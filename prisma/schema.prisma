@@ -1,0 +1,287 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//////////////////////
+// ENUMS
+//////////////////////
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum MatchStatus {
+  SCHEDULED
+  LIVE
+  FINISHED
+  POSTPONED
+}
+
+enum MatchType {
+  NORMAL
+  FINAL
+  SEMIFINAL
+  QUARTERFINAL
+  FRIENDLY
+}
+
+enum VoteOption {
+  HOME
+  DRAW
+  AWAY
+}
+
+enum ReactionType {
+  LIKE
+  DISLIKE
+  LAUGH
+  ANGRY
+}
+
+//////////////////////
+// USER
+//////////////////////
+
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String
+  email    String   @unique
+  provider String
+  password String?
+  role     UserRole @default(USER)
+
+  avatar_url      String? @default("")
+  avatar_bg_color String? @default("")
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  team_id Int?
+  team    Team? @relation(fields: [team_id], references: [id])
+
+  votes            MatchVote[]
+  predictions      ScorePrediction[]
+  comments         Comment[]
+  commentReactions CommentReaction[]
+}
+
+//////////////////////
+// LEAGUE
+//////////////////////
+
+model League {
+  id         Int     @id @default(autoincrement())
+  name       String
+  country    String
+  logo_url   String?
+  slug       String  @unique
+  sort_order Int     @default(0)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  teams   Team[]
+  matches Match[]
+}
+
+//////////////////////
+// TEAM
+//////////////////////
+
+model Team {
+  id         Int     @id @default(autoincrement())
+  name       String
+  slug       String  @unique
+  short_code String
+  logo_url   String?
+  country    String
+  type       String
+  venue      String?
+
+  league_id Int
+  league    League @relation(fields: [league_id], references: [id])
+
+  users User[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  home_matches Match[] @relation("HomeTeam")
+  away_matches Match[] @relation("AwayTeam")
+}
+
+//////////////////////
+// MATCH
+//////////////////////
+
+model Match {
+  id       Int      @id @default(autoincrement())
+  kickoff  DateTime
+  timezone String
+  venue    String?
+
+  slug String @unique
+
+  status MatchStatus @default(SCHEDULED)
+  type   MatchType   @default(NORMAL)
+
+  allow_draw Boolean @default(true)
+  big_match  Boolean @default(false)
+  derby      Boolean @default(false)
+
+  home_score Int?
+  away_score Int?
+
+  published Boolean @default(false)
+
+  home_team_id Int
+  home_team    Team @relation("HomeTeam", fields: [home_team_id], references: [id])
+
+  away_team_id Int
+  away_team    Team @relation("AwayTeam", fields: [away_team_id], references: [id])
+
+  league_id Int
+  league    League @relation(fields: [league_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  votes        MatchVote[]
+  predictions  ScorePrediction[]
+  comments     Comment[]
+  scoreOptions ScoreOption[]
+}
+
+//////////////////////
+// MATCH VOTING
+//////////////////////
+
+model MatchVote {
+  id Int @id @default(autoincrement())
+
+  user_id Int
+  user    User @relation(fields: [user_id], references: [id])
+
+  match_id Int
+  match    Match @relation(fields: [match_id], references: [id])
+
+  vote VoteOption
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([user_id, match_id])
+}
+
+//////////////////////
+// SCORE OPTION
+//////////////////////
+
+model ScoreOption {
+  id Int @id @default(autoincrement())
+
+  match_id Int
+  match    Match @relation(fields: [match_id], references: [id])
+
+  home_score Int
+  away_score Int
+
+  created_at DateTime @default(now())
+
+  votes ScorePrediction[]
+
+  @@unique([match_id, home_score, away_score])
+}
+
+//////////////////////
+// SCORE PREDICTION
+//////////////////////
+
+model ScorePrediction {
+  id Int @id @default(autoincrement())
+
+  user_id Int
+  user    User @relation(fields: [user_id], references: [id])
+
+  match_id Int
+  match    Match @relation(fields: [match_id], references: [id])
+
+  score_option_id Int
+  score_option    ScoreOption @relation(fields: [score_option_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([user_id, match_id])
+}
+
+// model ScorePrediction {
+//     id Int @id @default(autoincrement())
+
+//     user_id Int
+//     user    User @relation(fields: [user_id], references: [id])
+
+//     match_id Int
+//     match    Match @relation(fields: [match_id], references: [id])
+
+//     home_score Int
+//     away_score Int
+
+//     created_at DateTime @default(now())
+//     updated_at DateTime @default(now())
+
+//     @@unique([user_id, match_id])
+// }
+
+//////////////////////
+// Comment
+//////////////////////
+
+model Comment {
+  id Int @id @default(autoincrement())
+
+  match_id Int
+  match    Match @relation(fields: [match_id], references: [id])
+
+  user_id Int
+  user    User @relation(fields: [user_id], references: [id])
+
+  text String
+
+  parent_id Int?
+  parent    Comment?  @relation("CommentReplies", fields: [parent_id], references: [id])
+  replies   Comment[] @relation("CommentReplies")
+
+  reactions CommentReaction[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+//////////////////////
+// Comment Reaction
+//////////////////////
+
+model CommentReaction {
+  id Int @id @default(autoincrement())
+
+  comment_id Int
+  comment    Comment @relation(fields: [comment_id], references: [id])
+
+  user_id Int
+  user    User @relation(fields: [user_id], references: [id])
+
+  reaction ReactionType
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([comment_id, user_id])
+}
