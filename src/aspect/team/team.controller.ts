@@ -2,29 +2,22 @@ import { errorResponse, successResponse } from "../../lib/responseUtils";
 import prisma from "../../prisma";
 import { TeamT } from "../../types/team.type";
 import { Request, Response } from "express";
+import slugify from "slugify";
 
 /**
  * Create Team (League Required)
  */
 export async function createTeamController(req: Request, res: Response) {
   try {
-    const {
-      name,
-      slug,
-      short_code,
-      logo_url,
-      country,
-      venue,
-      type,
-      league_id,
-    }: TeamT = req.body;
+    const { name, short_code, logo_url, country, venue, type, league_id } =
+      req.body;
 
-    if (!name || !slug || !short_code || !league_id || !venue) {
+    if (!name || !short_code || !league_id || !venue) {
       return errorResponse(
         res,
-        "name, slug, short_code, venue and league_id are required",
+        "name, short_code, venue and league_id are required",
         "",
-        404
+        400
       );
     }
 
@@ -37,13 +30,25 @@ export async function createTeamController(req: Request, res: Response) {
       return errorResponse(res, "League not found", "", 404);
     }
 
+    // generate slug from team name
+    let slug = slugify(name, {
+      lower: true,
+      strict: true,
+      trim: true,
+    });
+
     // check duplicate slug
-    const existingTeam = await prisma.team.findUnique({
+    let existingTeam = await prisma.team.findUnique({
       where: { slug },
     });
 
-    if (existingTeam) {
-      return errorResponse(res, "Team slug already exists", "", 400);
+    let counter = 1;
+    while (existingTeam) {
+      slug = `${slug}-${counter}`;
+      existingTeam = await prisma.team.findUnique({
+        where: { slug },
+      });
+      counter++;
     }
 
     const team = await prisma.team.create({
@@ -55,7 +60,7 @@ export async function createTeamController(req: Request, res: Response) {
         country,
         type,
         venue,
-        league_id,
+        league_id: Number(league_id),
       },
       include: {
         league: true,

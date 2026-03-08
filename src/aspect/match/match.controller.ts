@@ -198,10 +198,12 @@ export async function getMatchesController(req: Request, res: Response) {
  */
 export async function getMatchBySlugController(req: Request, res: Response) {
   try {
-    const { slug } = req.params;
+    const { idOrSlug } = req.params;
 
-    const match = await prisma.match.findUnique({
-      where: { slug: slug as string },
+    const isId = !isNaN(Number(idOrSlug));
+
+    const match = await prisma.match.findFirst({
+      where: isId ? { id: Number(idOrSlug) } : { slug: idOrSlug as string },
       include: {
         home_team: true,
         away_team: true,
@@ -499,12 +501,55 @@ export async function voteScorePredictionController(
   }
 }
 
-
 /**
  * Get Prediction Results
  */
 
-export async function getPredictionResultsController(req: Request, res: Response) {
+// export async function getPredictionResultsController(
+//   req: Request,
+//   res: Response
+// ) {
+//   try {
+//     const matchId = Number(req.params.id);
+
+//     const options = await prisma.scoreOption.findMany({
+//       where: { match_id: matchId },
+//       include: {
+//         _count: {
+//           select: { votes: true },
+//         },
+//       },
+//     });
+
+//     const totalVotes = options.reduce((sum, o) => sum + o._count.votes, 0);
+
+//     const results = options.map((o) => ({
+//       id: o.id,
+//       home_score: o.home_score,
+//       away_score: o.away_score,
+//       votes: o._count.votes,
+//       percent:
+//         totalVotes === 0 ? 0 : Math.round((o._count.votes / totalVotes) * 100),
+//     }));
+
+//     return successResponse(res, "Prediction results fetched", {
+//       total_votes: totalVotes,
+//       predictions: results,
+//     });
+//   } catch (error: any) {
+//     return errorResponse(
+//       res,
+//       "Failed to fetch predictions",
+//       error.message,
+//       500
+//     );
+//   }
+// }
+
+export async function getPredictionResultsController(
+  req: Request,
+  res: Response
+) {
   try {
     const matchId = Number(req.params.id);
 
@@ -512,28 +557,283 @@ export async function getPredictionResultsController(req: Request, res: Response
       where: { match_id: matchId },
       include: {
         _count: {
-          select: { votes: true }
-        }
-      }
+          select: { votes: true },
+        },
+        admin_score_prediction: true,
+      },
     });
 
-    const totalVotes = options.reduce((sum, o) => sum + o._count.votes, 0);
+    // calculate total votes (user + admin)
+    const totalVotes = options.reduce((sum, o) => {
+      const adminVotes = o.admin_score_prediction?.vote_count ?? 0;
+      return sum + o._count.votes + adminVotes;
+    }, 0);
 
-    const results = options.map(o => ({
-      id: o.id,
-      home_score: o.home_score,
-      away_score: o.away_score,
-      votes: o._count.votes,
-      percent: totalVotes === 0 ? 0 :
-        Math.round((o._count.votes / totalVotes) * 100)
-    }));
+    const results = options.map((o) => {
+      const userVotes = o._count.votes;
+      const adminVotes = o.admin_score_prediction?.vote_count ?? 0;
+      const votes = userVotes + adminVotes;
+
+      return {
+        id: o.id,
+        home_score: o.home_score,
+        away_score: o.away_score,
+        votes,
+        user_votes: userVotes,
+        admin_votes: adminVotes,
+        percent:
+          totalVotes === 0
+            ? 0
+            : Number(((votes / totalVotes) * 100).toFixed(2)),
+      };
+    });
 
     return successResponse(res, "Prediction results fetched", {
       total_votes: totalVotes,
-      predictions: results
+      predictions: results,
+    });
+  } catch (error: any) {
+    return errorResponse(
+      res,
+      "Failed to fetch predictions",
+      error.message,
+      500
+    );
+  }
+}
+
+/**
+ * Get Admin Match Votes
+ */
+export async function getAdminMatchVotesController(
+  req: Request,
+  res: Response
+) {
+  try {
+    const matchId = Number(req.params.id);
+
+    // USER VOTES
+    const userVotes = await prisma.matchVote.groupBy({
+      by: ["vote"],
+      where: { match_id: matchId },
+      _count: true,
     });
 
+    let userHome = 0;
+    let userDraw = 0;
+    let userAway = 0;
+
+    userVotes.forEach((v) => {
+      if (v.vote === "HOME") userHome = v._count;
+      if (v.vote === "DRAW") userDraw = v._count;
+      if (v.vote === "AWAY") userAway = v._count;
+    });
+
+    const userTotal = userHome + userDraw + userAway;
+
+    // ADMIN VOTES
+    const adminVotes = await prisma.adminMatchVote.findUnique({
+      where: { match_id: matchId },
+    });
+
+    const adminHome = adminVotes?.home_votes ?? 0;
+    const adminDraw = adminVotes?.draw_votes ?? 0;
+    const adminAway = adminVotes?.away_votes ?? 0;
+
+    const adminTotal = adminHome + adminDraw + adminAway;
+
+    // TOTAL
+    const homeVotes = userHome + adminHome;
+    const drawVotes = userDraw + adminDraw;
+    const awayVotes = userAway + adminAway;
+
+    const totalVotes = homeVotes + drawVotes + awayVotes;
+
+    const percent = (n: number) =>
+      totalVotes === 0 ? 0 : Number(((n / totalVotes) * 100).toFixed(2));
+
+    return successResponse(res, "Match votes fetched", {
+      vote_id: adminVotes?.id ?? null,
+      match_id: matchId,
+
+      home_votes: homeVotes,
+      draw_votes: drawVotes,
+      away_votes: awayVotes,
+      total_votes: totalVotes,
+
+      home_percentage: percent(homeVotes),
+      draw_percentage: percent(drawVotes),
+      away_percentage: percent(awayVotes),
+
+      user_votes: {
+        home: userHome,
+        draw: userDraw,
+        away: userAway,
+        total: userTotal,
+      },
+
+      admin_votes: {
+        home: adminHome,
+        draw: adminDraw,
+        away: adminAway,
+        total: adminTotal,
+      },
+    });
   } catch (error: any) {
-    return errorResponse(res, "Failed to fetch predictions", error.message, 500);
+    return errorResponse(res, "Failed to fetch votes", error.message, 500);
+  }
+}
+
+/**
+ * Update Admin Match Vote
+ */
+
+export async function updateAdminMatchVoteController(
+  req: Request,
+  res: Response
+) {
+  try {
+    const matchId = Number(req.params.id);
+    const { home_votes, draw_votes, away_votes } = req.body;
+    const userId = (req as any).user?.id;
+
+    if (!matchId) {
+      return errorResponse(res, "match_id is required");
+    }
+
+    const existingVote = await prisma.adminMatchVote.findUnique({
+      where: { match_id: Number(matchId) },
+    });
+
+    let vote;
+
+    if (!existingVote) {
+      // CREATE
+      vote = await prisma.adminMatchVote.create({
+        data: {
+          match_id: Number(matchId),
+          home_votes: Number(home_votes) || 0,
+          draw_votes: Number(draw_votes) || 0,
+          away_votes: Number(away_votes) || 0,
+          user_id: userId,
+        },
+      });
+    } else {
+      // UPDATE
+      vote = await prisma.adminMatchVote.update({
+        where: { match_id: Number(matchId) },
+        data: {
+          home_votes: Number(home_votes) ?? existingVote.home_votes,
+          draw_votes: Number(draw_votes) ?? existingVote.draw_votes,
+          away_votes: Number(away_votes) ?? existingVote.away_votes,
+          user_id: userId,
+        },
+      });
+    }
+
+    const totalVotes = vote.home_votes + vote.draw_votes + vote.away_votes;
+
+    return successResponse(res, "Admin match votes saved", {
+      id: vote.id,
+      match_id: vote.match_id,
+      home_votes: vote.home_votes,
+      draw_votes: vote.draw_votes,
+      away_votes: vote.away_votes,
+      total_votes: totalVotes,
+    });
+  } catch (error: any) {
+    return errorResponse(
+      res,
+      "Failed to update admin votes",
+      error.message,
+      500
+    );
+  }
+}
+
+/**
+ * Update Admin Score Predictions
+ */
+
+export async function updateAdminScorePredictionController(
+  req: Request,
+  res: Response
+) {
+  try {
+    const matchId = Number(req.params.id);
+    const {home_score, away_score, vote_count } = req.body;
+    const userId = (req as any).user?.id;
+
+    if (!matchId || home_score === undefined || away_score === undefined) {
+      return errorResponse(
+        res,
+        "match_id, home_score and away_score are required"
+      );
+    }
+
+    // STEP 1: Check ScoreOption
+    const scoreOption = await prisma.scoreOption.findUnique({
+      where: {
+        match_id_home_score_away_score: {
+          match_id: Number(matchId),
+          home_score: Number(home_score),
+          away_score: Number(away_score),
+        },
+      },
+    });
+
+    if (!scoreOption) {
+      return errorResponse(
+        res,
+        "Score option does not exist. Please create score option first."
+      );
+    }
+
+    // STEP 2: Check AdminScorePrediction
+    const existingAdminScore = await prisma.adminScorePrediction.findUnique({
+      where: {
+        score_option_id: scoreOption.id,
+      },
+    });
+
+    let adminScore;
+
+    if (!existingAdminScore) {
+      // CREATE
+      adminScore = await prisma.adminScorePrediction.create({
+        data: {
+          score_option_id: scoreOption.id,
+          vote_count: Number(vote_count) || 0,
+          user_id: userId,
+        },
+      });
+    } else {
+      // UPDATE
+      adminScore = await prisma.adminScorePrediction.update({
+        where: {
+          score_option_id: scoreOption.id,
+        },
+        data: {
+          vote_count: Number(vote_count) ?? existingAdminScore.vote_count,
+          user_id: userId,
+        },
+      });
+    }
+
+    return successResponse(res, "Admin score prediction updated", {
+      id: adminScore.id,
+      score_option_id: scoreOption.id,
+      match_id:matchId,
+      home_score: scoreOption.home_score,
+      away_score: scoreOption.away_score,
+      vote_count: adminScore.vote_count,
+    });
+  } catch (error: any) {
+    return errorResponse(
+      res,
+      "Failed to update admin score prediction",
+      error.message,
+      500
+    );
   }
 }

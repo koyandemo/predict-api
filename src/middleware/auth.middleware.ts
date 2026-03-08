@@ -2,9 +2,12 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
 export const authMiddle = (req: Request, res: Response, next: NextFunction) => {
-  const isPrivate = req.path.includes("key");
+  // const isPrivate = req.path.includes("key");
+  // if (!isPrivate) {
+  //   return next();
+  // }
 
-  if (!isPrivate) {
+  if("true" === process.env.BYPASS_AUTH) {
     return next();
   }
 

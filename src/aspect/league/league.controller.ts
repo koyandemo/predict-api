@@ -2,17 +2,25 @@ import { errorResponse, successResponse } from "../../lib/responseUtils";
 import prisma from "../../prisma";
 import { LeagueT } from "../../types/league.type";
 import { Request, Response } from "express";
+import slugify from "slugify";
 
 /**
  * Create League
  */
 export async function createLeagueController(req: Request, res: Response) {
   try {
-    const { name, country, slug, logo_url, sort_order }: LeagueT = req.body;
+    const { name, country, logo_url, sort_order } = req.body;
 
-    if (!name || !country || !slug) {
-      return errorResponse(res, "Name, country and slug are required", "", 400);
+    if (!name || !country) {
+      return errorResponse(res, "Name and country are required", "", 400);
     }
+
+    // Auto create slug
+    const slug = slugify(`${name}-${country}`, {
+      lower: true,
+      strict: true,
+      trim: true,
+    });
 
     const existingLeague = await prisma.league.findUnique({
       where: { slug },
@@ -31,6 +39,7 @@ export async function createLeagueController(req: Request, res: Response) {
         sort_order: sort_order ?? 0,
       },
     });
+
     return successResponse(res, "League created successfully", league, 201);
   } catch (error: any) {
     return errorResponse(res, "Failed to create League", error.message, 500);

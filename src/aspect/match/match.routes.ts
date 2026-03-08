@@ -4,11 +4,14 @@ import {
   createScoreOptionController,
   deleteMatchController,
   deleteScoreOptionController,
+  getAdminMatchVotesController,
   getMatchBySlugController,
   getMatchesController,
   getMatchVotesController,
   getPredictionResultsController,
   getScoreOptionsController,
+  updateAdminMatchVoteController,
+  updateAdminScorePredictionController,
   updateMatchController,
   updateScoreOptionController,
   voteMatchController,
@@ -36,6 +39,13 @@ router.patch("/:id/score-options/key", updateScoreOptionController);
 router.delete("/:id/score-option/key", deleteScoreOptionController);
 
 router.post("/:id/score-predictions/key", voteScorePredictionController);
-router.get("/:id/score-predictions", getPredictionResultsController);
+
+router.get("/:id/score-options-predictions", getPredictionResultsController);
+router.get("/:id/admin-match-votes", getAdminMatchVotesController);
+router.post("/:id/update-admin-match-votes", updateAdminMatchVoteController);
+router.post(
+  "/:id/update-admin-score-predictions",
+  updateAdminScorePredictionController
+);
 
 export default router;

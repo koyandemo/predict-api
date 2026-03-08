@@ -66,10 +66,12 @@ model User {
   team_id Int?
   team    Team? @relation(fields: [team_id], references: [id])
 
-  votes            MatchVote[]
-  predictions      ScorePrediction[]
-  comments         Comment[]
-  commentReactions CommentReaction[]
+  votes                 MatchVote[]
+  predictions           ScorePrediction[]
+  comments              Comment[]
+  commentReactions      CommentReaction[]
+  adminMatchVotes       AdminMatchVote[]
+  adminScorePredictions AdminScorePrediction[]
 }
 
 //////////////////////
@@ -153,10 +155,11 @@ model Match {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  votes        MatchVote[]
-  predictions  ScorePrediction[]
-  comments     Comment[]
-  scoreOptions ScoreOption[]
+  votes          MatchVote[]
+  predictions    ScorePrediction[]
+  comments       Comment[]
+  scoreOptions   ScoreOption[]
+  adminMatchVote AdminMatchVote?
 }
 
 //////////////////////
@@ -195,7 +198,8 @@ model ScoreOption {
 
   created_at DateTime @default(now())
 
-  votes ScorePrediction[]
+  votes                  ScorePrediction[]
+  admin_score_prediction AdminScorePrediction?
 
   @@unique([match_id, home_score, away_score])
 }
@@ -222,23 +226,39 @@ model ScorePrediction {
   @@unique([user_id, match_id])
 }
 
-// model ScorePrediction {
-//     id Int @id @default(autoincrement())
+model AdminMatchVote {
+  id Int @id @default(autoincrement())
 
-//     user_id Int
-//     user    User @relation(fields: [user_id], references: [id])
+  match_id Int   @unique
+  match    Match @relation(fields: [match_id], references: [id])
 
-//     match_id Int
-//     match    Match @relation(fields: [match_id], references: [id])
+  user_id Int
+  user    User @relation(fields: [user_id], references: [id])
 
-//     home_score Int
-//     away_score Int
+  home_votes Int @default(0)
+  draw_votes Int @default(0)
+  away_votes Int @default(0)
 
-//     created_at DateTime @default(now())
-//     updated_at DateTime @default(now())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
 
-//     @@unique([user_id, match_id])
-// }
+model AdminScorePrediction {
+  id Int @id @default(autoincrement())
+
+  score_option_id Int
+  score_option    ScoreOption @relation(fields: [score_option_id], references: [id])
+
+  user_id Int
+  user    User @relation(fields: [user_id], references: [id])
+
+  vote_count Int @default(0)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([score_option_id])
+}
 
 //////////////////////
 // Comment

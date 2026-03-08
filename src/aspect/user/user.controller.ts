@@ -73,7 +73,7 @@ export async function loginUserController(req: Request, res: Response) {
     const result = await loginUserService(email, password);
 
     if (!result.success) {
-      return errorResponse(res, result.message, result.error, 401);
+      return errorResponse(res, result.message, result.error, 403);
     }
 
     return successResponse(

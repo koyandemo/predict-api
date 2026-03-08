@@ -10,8 +10,8 @@ import {
 const router = Router();
 
 router.post("/key", createTeamController);
-router.get("/key", getTeamsController);
-router.get("/:id/key", getTeamByIdController);
+router.get("/", getTeamsController);
+router.get("/:id", getTeamByIdController);
 router.put("/:id/key", updateTeamController);
 router.delete("/:id/key", deleteTeamController);
 
