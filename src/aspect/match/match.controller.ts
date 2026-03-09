@@ -261,8 +261,7 @@ export async function deleteMatchController(req: Request, res: Response) {
  */
 export async function voteMatchController(req: Request, res: Response) {
   try {
-    // const userId = req.user.id; // from auth middleware
-    const userId = 1;
+    const userId = req?.user?.id;
     const matchId = Number(req.params.id);
     const { vote } = req.body;
 
@@ -460,7 +459,7 @@ export async function voteScorePredictionController(
   res: Response
 ) {
   try {
-    const userId = 3;
+    const userId = req.user?.id;
     const matchId = Number(req.params.id);
     const { score_option_id } = req.body;
 
@@ -504,66 +503,39 @@ export async function voteScorePredictionController(
 /**
  * Get Prediction Results
  */
-
-// export async function getPredictionResultsController(
-//   req: Request,
-//   res: Response
-// ) {
-//   try {
-//     const matchId = Number(req.params.id);
-
-//     const options = await prisma.scoreOption.findMany({
-//       where: { match_id: matchId },
-//       include: {
-//         _count: {
-//           select: { votes: true },
-//         },
-//       },
-//     });
-
-//     const totalVotes = options.reduce((sum, o) => sum + o._count.votes, 0);
-
-//     const results = options.map((o) => ({
-//       id: o.id,
-//       home_score: o.home_score,
-//       away_score: o.away_score,
-//       votes: o._count.votes,
-//       percent:
-//         totalVotes === 0 ? 0 : Math.round((o._count.votes / totalVotes) * 100),
-//     }));
-
-//     return successResponse(res, "Prediction results fetched", {
-//       total_votes: totalVotes,
-//       predictions: results,
-//     });
-//   } catch (error: any) {
-//     return errorResponse(
-//       res,
-//       "Failed to fetch predictions",
-//       error.message,
-//       500
-//     );
-//   }
-// }
-
 export async function getPredictionResultsController(
   req: Request,
   res: Response
 ) {
   try {
+    const userId = req.user?.id;
     const matchId = Number(req.params.id);
 
-    const options = await prisma.scoreOption.findMany({
-      where: { match_id: matchId },
-      include: {
-        _count: {
-          select: { votes: true },
-        },
-        admin_score_prediction: true,
-      },
-    });
+    if (Number.isNaN(matchId)) {
+      return errorResponse(res, "Invalid match id", "", 400);
+    }
 
-    // calculate total votes (user + admin)
+    const [options, userVotes] = await Promise.all([
+      prisma.scoreOption.findMany({
+        where: { match_id: matchId },
+        include: {
+          _count: {
+            select: { votes: true },
+          },
+          admin_score_prediction: true,
+        },
+      }),
+
+      userId
+        ? prisma.scorePrediction.findMany({
+            where: { user_id: userId, match_id: matchId },
+            select: { score_option_id: true },
+          })
+        : [],
+    ]);
+
+    const votedOptionIds = new Set(userVotes.map((v) => v.score_option_id));
+
     const totalVotes = options.reduce((sum, o) => {
       const adminVotes = o.admin_score_prediction?.vote_count ?? 0;
       return sum + o._count.votes + adminVotes;
@@ -578,9 +550,13 @@ export async function getPredictionResultsController(
         id: o.id,
         home_score: o.home_score,
         away_score: o.away_score,
+
         votes,
         user_votes: userVotes,
         admin_votes: adminVotes,
+
+        current_user_vote: votedOptionIds.has(o.id),
+
         percent:
           totalVotes === 0
             ? 0
@@ -610,14 +586,32 @@ export async function getAdminMatchVotesController(
   res: Response
 ) {
   try {
+    const userId = req.user?.id;
     const matchId = Number(req.params.id);
 
-    // USER VOTES
-    const userVotes = await prisma.matchVote.groupBy({
-      by: ["vote"],
-      where: { match_id: matchId },
-      _count: true,
-    });
+    const [userVotes, adminVotes, currentUserVote] = await Promise.all([
+      prisma.matchVote.groupBy({
+        by: ["vote"],
+        where: { match_id: matchId },
+        _count: true,
+      }),
+
+      prisma.adminMatchVote.findUnique({
+        where: { match_id: matchId },
+      }),
+
+      userId
+        ? prisma.matchVote.findUnique({
+            where: {
+              user_id_match_id: {
+                user_id: userId,
+                match_id: matchId,
+              },
+            },
+            select: { vote: true },
+          })
+        : null,
+    ]);
 
     let userHome = 0;
     let userDraw = 0;
@@ -631,18 +625,12 @@ export async function getAdminMatchVotesController(
 
     const userTotal = userHome + userDraw + userAway;
 
-    // ADMIN VOTES
-    const adminVotes = await prisma.adminMatchVote.findUnique({
-      where: { match_id: matchId },
-    });
-
     const adminHome = adminVotes?.home_votes ?? 0;
     const adminDraw = adminVotes?.draw_votes ?? 0;
     const adminAway = adminVotes?.away_votes ?? 0;
 
     const adminTotal = adminHome + adminDraw + adminAway;
 
-    // TOTAL
     const homeVotes = userHome + adminHome;
     const drawVotes = userDraw + adminDraw;
     const awayVotes = userAway + adminAway;
@@ -664,6 +652,8 @@ export async function getAdminMatchVotesController(
       home_percentage: percent(homeVotes),
       draw_percentage: percent(drawVotes),
       away_percentage: percent(awayVotes),
+
+      current_user_vote: currentUserVote?.vote ?? null,
 
       user_votes: {
         home: userHome,
@@ -761,7 +751,7 @@ export async function updateAdminScorePredictionController(
 ) {
   try {
     const matchId = Number(req.params.id);
-    const {home_score, away_score, vote_count } = req.body;
+    const { home_score, away_score, vote_count } = req.body;
     const userId = (req as any).user?.id;
 
     if (!matchId || home_score === undefined || away_score === undefined) {
@@ -823,7 +813,7 @@ export async function updateAdminScorePredictionController(
     return successResponse(res, "Admin score prediction updated", {
       id: adminScore.id,
       score_option_id: scoreOption.id,
-      match_id:matchId,
+      match_id: matchId,
       home_score: scoreOption.home_score,
       away_score: scoreOption.away_score,
       vote_count: adminScore.vote_count,

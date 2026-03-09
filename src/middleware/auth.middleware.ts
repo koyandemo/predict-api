@@ -27,7 +27,6 @@ export const authMiddle = (req: Request, res: Response, next: NextFunction) => {
     if (decoded.exp && Date.now() >= decoded.exp * 1000) {
       return res.status(401).json({ message: "Token has expired" });
     }
-
     req.user = decoded.user || decoded;
 
     next();
