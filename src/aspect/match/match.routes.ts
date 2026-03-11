@@ -26,10 +26,6 @@ router.get("/:slug", getMatchBySlugController);
 router.put("/:id/key", updateMatchController);
 router.delete("/:id/key", deleteMatchController);
 
-/**
- * Vote for a match
- */
-
 router.post("/:id/vote/key", voteMatchController);
 router.get("/:id/votes", getMatchVotesController);
 

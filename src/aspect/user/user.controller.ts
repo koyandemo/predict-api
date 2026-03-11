@@ -1,8 +1,15 @@
 import { Request, Response } from "express";
 import { loginUserService, registerUserService } from "./user.service";
-import { errorResponse, successResponse } from "../../lib/responseUtils";
+import {
+  errorResponse,
+  successResponse,
+} from "../../lib/responseUtils";
+import { UserT } from "@/types/user.type";
 
-export async function registerUserController(req: Request, res: Response) {
+export async function registerUserController(
+  req: Request,
+  res: Response
+): Promise<Response<UserT>> {
   try {
     const {
       name,
@@ -62,7 +69,10 @@ export async function registerUserController(req: Request, res: Response) {
   }
 }
 
-export async function loginUserController(req: Request, res: Response) {
+export async function loginUserController(
+  req: Request,
+  res: Response
+): Promise<Response<UserT>> {
   try {
     const { email, password } = req.body;
 

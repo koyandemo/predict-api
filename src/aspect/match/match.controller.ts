@@ -1,12 +1,23 @@
 import { Request, Response } from "express";
 import prisma from "../../prisma";
 import { errorResponse, successResponse } from "../../lib/responseUtils";
-import { MatchT } from "../../types/match.type";
+import {
+  ApiResScorePredictionT,
+  MatchT,
+  MatchVoteResultT,
+  MatchVoteT,
+  ScoreOptionT,
+  ScorePredictionT,
+} from "../../types/match.type";
+import { PaginationT } from "@/types/index.type";
 
 /**
  * Create Match
  */
-export async function createMatchController(req: Request, res: Response) {
+export async function createMatchController(
+  req: Request,
+  res: Response
+): Promise<Response<MatchT>> {
   try {
     const {
       kickoff,
@@ -74,7 +85,10 @@ export async function createMatchController(req: Request, res: Response) {
 /**
  * Get All Matches
  */
-export async function getMatchesController(req: Request, res: Response) {
+export async function getMatchesController(
+  req: Request,
+  res: Response
+): Promise<Response<{ data: MatchT[]; pagination: PaginationT }>> {
   try {
     const {
       league,
@@ -196,7 +210,10 @@ export async function getMatchesController(req: Request, res: Response) {
 /**
  * Get Match By Slug
  */
-export async function getMatchBySlugController(req: Request, res: Response) {
+export async function getMatchBySlugController(
+  req: Request,
+  res: Response
+): Promise<Response<MatchT>> {
   try {
     const { idOrSlug } = req.params;
 
@@ -224,7 +241,10 @@ export async function getMatchBySlugController(req: Request, res: Response) {
 /**
  * Update Match
  */
-export async function updateMatchController(req: Request, res: Response) {
+export async function updateMatchController(
+  req: Request,
+  res: Response
+): Promise<Response<MatchT>> {
   try {
     const { id } = req.params;
 
@@ -242,7 +262,10 @@ export async function updateMatchController(req: Request, res: Response) {
 /**
  * Delete Match
  */
-export async function deleteMatchController(req: Request, res: Response) {
+export async function deleteMatchController(
+  req: Request,
+  res: Response
+): Promise<Response> {
   try {
     const { id } = req.params;
 
@@ -259,7 +282,10 @@ export async function deleteMatchController(req: Request, res: Response) {
 /**
  * Vote Match
  */
-export async function voteMatchController(req: Request, res: Response) {
+export async function voteMatchController(
+  req: Request,
+  res: Response
+): Promise<Response<MatchVoteT>> {
   try {
     const userId = req?.user?.id;
     const matchId = Number(req.params.id);
@@ -309,7 +335,10 @@ export async function voteMatchController(req: Request, res: Response) {
  * Get Match Votes
  */
 
-export async function getMatchVotesController(req: Request, res: Response) {
+export async function getMatchVotesController(
+  req: Request,
+  res: Response
+): Promise<Response<MatchVoteResultT>> {
   try {
     const matchId = Number(req.params.id);
 
@@ -349,7 +378,10 @@ export async function getMatchVotesController(req: Request, res: Response) {
  * Create Score Option
  */
 
-export async function createScoreOptionController(req: Request, res: Response) {
+export async function createScoreOptionController(
+  req: Request,
+  res: Response
+): Promise<Response<ScoreOptionT>> {
   try {
     const matchId = Number(req.params.id);
     const { home_score, away_score } = req.body;
@@ -377,7 +409,10 @@ export async function createScoreOptionController(req: Request, res: Response) {
  * Get Score Option
  */
 
-export async function getScoreOptionsController(req: Request, res: Response) {
+export async function getScoreOptionsController(
+  req: Request,
+  res: Response
+): Promise<Response<ScoreOptionT[]>> {
   try {
     const matchId = Number(req.params.id);
 
@@ -403,7 +438,10 @@ export async function getScoreOptionsController(req: Request, res: Response) {
  * Update Score Option
  */
 
-export async function updateScoreOptionController(req: Request, res: Response) {
+export async function updateScoreOptionController(
+  req: Request,
+  res: Response
+): Promise<Response<ScoreOptionT>> {
   try {
     const id = Number(req.params.id);
     const { home_score, away_score } = req.body;
@@ -431,7 +469,10 @@ export async function updateScoreOptionController(req: Request, res: Response) {
  * Delete Score Option
  */
 
-export async function deleteScoreOptionController(req: Request, res: Response) {
+export async function deleteScoreOptionController(
+  req: Request,
+  res: Response
+): Promise<Response> {
   try {
     const id = Number(req.params.id);
 
@@ -457,7 +498,7 @@ export async function deleteScoreOptionController(req: Request, res: Response) {
 export async function voteScorePredictionController(
   req: Request,
   res: Response
-) {
+): Promise<Response<ScorePredictionT>> {
   try {
     const userId = req.user?.id;
     const matchId = Number(req.params.id);
@@ -506,7 +547,9 @@ export async function voteScorePredictionController(
 export async function getPredictionResultsController(
   req: Request,
   res: Response
-) {
+): Promise<
+  Response<{ total_votes: number; predictions: ApiResScorePredictionT[] }>
+> {
   try {
     const userId = req.user?.id;
     const matchId = Number(req.params.id);

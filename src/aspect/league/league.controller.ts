@@ -7,7 +7,10 @@ import slugify from "slugify";
 /**
  * Create League
  */
-export async function createLeagueController(req: Request, res: Response) {
+export async function createLeagueController(
+  req: Request,
+  res: Response
+): Promise<Response<LeagueT>> {
   try {
     const { name, country, logo_url, sort_order } = req.body;
 
@@ -49,7 +52,10 @@ export async function createLeagueController(req: Request, res: Response) {
 /**
  * Get All Leagues
  */
-export async function getLeaguesController(req: Request, res: Response) {
+export async function getLeaguesController(
+  req: Request,
+  res: Response
+): Promise<Response<LeagueT[]>> {
   try {
     const leagues = await prisma.league.findMany({
       include: {
@@ -68,7 +74,10 @@ export async function getLeaguesController(req: Request, res: Response) {
 /**
  * Get Single League
  */
-export async function getLeagueByIdController(req: Request, res: Response) {
+export async function getLeagueByIdController(
+  req: Request,
+  res: Response
+): Promise<Response<LeagueT>> {
   try {
     const { id } = req.params;
 
@@ -94,10 +103,13 @@ export async function getLeagueByIdController(req: Request, res: Response) {
 /**
  * Update League
  */
-export async function updateLeagueController(req: Request, res: Response) {
+export async function updateLeagueController(
+  req: Request,
+  res: Response
+): Promise<Response<LeagueT>> {
   try {
     const { id } = req.params;
-    const data: LeagueT = req.body;
+    const data: Omit<LeagueT, "teams"> = req.body;
 
     const league = await prisma.league.update({
       where: {
@@ -115,7 +127,10 @@ export async function updateLeagueController(req: Request, res: Response) {
 /**
  * Delete League
  */
-export async function deleteLeagueController(req: Request, res: Response) {
+export async function deleteLeagueController(
+  req: Request,
+  res: Response
+): Promise<Response> {
   try {
     const { id } = req.params;
 

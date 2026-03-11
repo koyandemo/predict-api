@@ -7,7 +7,10 @@ import slugify from "slugify";
 /**
  * Create Team (League Required)
  */
-export async function createTeamController(req: Request, res: Response) {
+export async function createTeamController(
+  req: Request,
+  res: Response
+): Promise<Response<TeamT>> {
   try {
     const { name, short_code, logo_url, country, venue, type, league_id } =
       req.body;
@@ -76,7 +79,10 @@ export async function createTeamController(req: Request, res: Response) {
 /**
  * Get All Teams
  */
-export async function getTeamsController(req: Request, res: Response) {
+export async function getTeamsController(
+  req: Request,
+  res: Response
+): Promise<Response<TeamT[]>> {
   try {
     const teams = await prisma.team.findMany({
       include: {
@@ -95,7 +101,10 @@ export async function getTeamsController(req: Request, res: Response) {
 /**
  * Get Team By ID
  */
-export async function getTeamByIdController(req: Request, res: Response) {
+export async function getTeamByIdController(
+  req: Request,
+  res: Response
+): Promise<Response<TeamT>> {
   try {
     const { id } = req.params;
 
@@ -121,10 +130,13 @@ export async function getTeamByIdController(req: Request, res: Response) {
 /**
  * Update Team
  */
-export async function updateTeamController(req: Request, res: Response) {
+export async function updateTeamController(
+  req: Request,
+  res: Response
+): Promise<Response<TeamT>> {
   try {
     const { id } = req.params;
-    const data: TeamT = req.body;
+    const data: Omit<TeamT, "league"> = req.body;
 
     if (data.league_id) {
       const league = await prisma.league.findUnique({
@@ -158,7 +170,10 @@ export async function updateTeamController(req: Request, res: Response) {
 /**
  * Delete Team
  */
-export async function deleteTeamController(req: Request, res: Response) {
+export async function deleteTeamController(
+  req: Request,
+  res: Response
+): Promise<Response> {
   try {
     const { id } = req.params;
 
