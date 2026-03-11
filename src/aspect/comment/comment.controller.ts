@@ -44,7 +44,7 @@ export async function createCommentController(req: Request, res: Response) {
  */
 export async function getAllCommentsController(req: Request, res: Response) {
   try {
-    const userId = req.user?.id;
+    const userId = req.user?.id || null;
     const matchId = Number(req.params.id);
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
@@ -92,10 +92,8 @@ export async function getAllCommentsController(req: Request, res: Response) {
         text: comment.text,
         user: comment.user,
         timestamp: comment.created_at,
-
         likes,
-        dislikes,
-
+        dis_likes: dislikes,
         reply_count: comment._count.replies,
 
         is_replay: false,
@@ -169,25 +167,93 @@ export async function createReplyCommentController(
  * Get Replies for a Comment
  */
 export const getReplies = async (req: Request, res: Response) => {
-  const commentId = Number(req.params.commentId);
+  try {
+    const userId = req.user?.id ?? null;
+    const commentId = Number(req.params.commentId);
 
-  const replies = await prisma.comment.findMany({
-    where: {
-      parent_id: commentId
-    },
-    include: {
-      user: true
-    },
-    orderBy: {
-      created_at: "desc"
-    }
-  });
+    const replies = await prisma.comment.findMany({
+      where: {
+        parent_id: commentId,
+      },
+      include: {
+        user: true,
+        reactions: true,
+        _count: {
+          select: {
+            replies: true,
+          },
+        },
+      },
+      orderBy: {
+        created_at: "desc",
+      },
+    });
 
-  res.json({
-    success: true,
-    data: replies
-  });
+    const formatted = replies.map((reply) => {
+      const likes = reply.reactions.filter((r) => r.reaction === "LIKE").length;
+
+      const dislikes = reply.reactions.filter(
+        (r) => r.reaction === "DISLIKE"
+      ).length;
+
+      const hasUserLiked = userId
+        ? reply.reactions.some(
+            (r) => r.user_id === userId && r.reaction === "LIKE"
+          )
+        : false;
+
+      const hasUserDisliked = userId
+        ? reply.reactions.some(
+            (r) => r.user_id === userId && r.reaction === "DISLIKE"
+          )
+        : false;
+
+      return {
+        id: reply.id,
+        match_id: reply.match_id,
+        user_id: reply.user_id,
+        text: reply.text,
+        user: reply.user,
+        timestamp: reply.created_at,
+
+        likes,
+        dis_likes: dislikes,
+
+        reply_count: reply._count.replies,
+
+        is_reply: true,
+        parent_id: reply.parent_id,
+
+        has_user_liked: hasUserLiked,
+        has_user_disliked: hasUserDisliked,
+      };
+    });
+
+    return successResponse(res, "Replies fetched successfully", formatted);
+  } catch (error: any) {
+    return errorResponse(res, "Failed to fetch replies", error.message, 500);
+  }
 };
+// export const getReplies = async (req: Request, res: Response) => {
+//   const commentId = Number(req.params.commentId);
+
+//   const replies = await prisma.comment.findMany({
+//     where: {
+//       parent_id: commentId
+//     },
+//     include: {
+//       user: true
+//     },
+//     orderBy: {
+//       created_at: "desc"
+//     }
+//   });
+
+//   res.json({
+//     success: true,
+//     data: replies
+//   });
+// };
 
 export const addReaction = async (req: Request, res: Response) => {
   const userId = req.user?.id;
@@ -197,31 +263,31 @@ export const addReaction = async (req: Request, res: Response) => {
   await prisma.commentReaction.upsert({
     where: {
       comment_id_user_id: {
-        user_id:userId,
-        comment_id: commentId
-      }
+        user_id: userId,
+        comment_id: commentId,
+      },
     },
     update: {
-      reaction:reaction_type.toUpperCase()
+      reaction: reaction_type.toUpperCase(),
     },
     create: {
-      user_id:userId,
+      user_id: userId,
       comment_id: commentId,
-      reaction: reaction_type.toUpperCase()
-    }
+      reaction: reaction_type.toUpperCase(),
+    },
   });
 
   const count = await prisma.commentReaction.count({
     where: {
       comment_id: commentId,
-      reaction:reaction_type.toUpperCase()
-    }
+      reaction: reaction_type.toUpperCase(),
+    },
   });
 
   res.json({
     success: true,
     data: {
-      reaction_count: count
-    }
+      reaction_count: count,
+    },
   });
 };

@@ -226,6 +226,10 @@ model ScorePrediction {
   @@unique([user_id, match_id])
 }
 
+//////////////////////
+// ADMIN MATCH VOTE
+//////////////////////
+
 model AdminMatchVote {
   id Int @id @default(autoincrement())
 
@@ -242,6 +246,10 @@ model AdminMatchVote {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
+
+//////////////////////
+// ADMIN SCORE PREDICTION
+//////////////////////
 
 model AdminScorePrediction {
   id Int @id @default(autoincrement())
