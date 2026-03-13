@@ -1,5 +1,5 @@
 import prisma from "../src/prisma";
-import data from "./data/match/bundesliga/season/2025-2026/week-26.json";
+import data from "./data/match/serie-a/season/2025-2026/week-29.json";
 import { GAME_WEEK_ID, LEAGUE_ID, SEASON_ID } from "./utils";
 
 async function seedPremierLeague() {
