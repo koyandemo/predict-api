@@ -1,0 +1,318 @@
+[
+  {
+    "home_team_name": "Alavés",
+    "away_team_name": "Villarreal",
+    "kickoff": "2026-03-13T20:00:00Z",
+    "timezone": "UTC",
+    "venue": "Mendizorrotza",
+    "slug": "alaves-vs-villarreal",
+    "status": "SCHEDULED",
+    "type": "NORMAL",
+    "allow_draw": true,
+    "big_match": false,
+    "derby": false,
+    "home_team_id": 16,
+    "away_team_id": 4,
+    "league_id": 1,
+    "season_id": 1,
+    "gameweek_id": 28,
+    "published": false,
+    "scoreOptions": [
+      { "home_score": 0, "away_score": 0 },
+      { "home_score": 1, "away_score": 0 },
+      { "home_score": 0, "away_score": 1 },
+      { "home_score": 1, "away_score": 1 },
+      { "home_score": 2, "away_score": 1 },
+      { "home_score": 1, "away_score": 2 }
+    ],
+    "adminMatchVote": {
+      "user_id": 1,
+      "home_votes": 0,
+      "draw_votes": 0,
+      "away_votes": 0
+    }
+  },
+  {
+    "home_team_name": "Girona",
+    "away_team_name": "Athletic Club",
+    "kickoff": "2026-03-14T13:00:00Z",
+    "timezone": "UTC",
+    "venue": "Estadi Montilivi",
+    "slug": "girona-vs-athletic-club",
+    "status": "SCHEDULED",
+    "type": "NORMAL",
+    "allow_draw": true,
+    "big_match": false,
+    "derby": false,
+    "home_team_id": 15,
+    "away_team_id": 10,
+    "league_id": 1,
+    "season_id": 1,
+    "gameweek_id": 28,
+    "published": false,
+    "scoreOptions": [
+      { "home_score": 0, "away_score": 0 },
+      { "home_score": 1, "away_score": 0 },
+      { "home_score": 0, "away_score": 1 },
+      { "home_score": 1, "away_score": 1 },
+      { "home_score": 2, "away_score": 1 },
+      { "home_score": 1, "away_score": 2 }
+    ],
+    "adminMatchVote": {
+      "user_id": 1,
+      "home_votes": 0,
+      "draw_votes": 0,
+      "away_votes": 0
+    }
+  },
+  {
+    "home_team_name": "Atlético Madrid",
+    "away_team_name": "Getafe",
+    "kickoff": "2026-03-14T15:15:00Z",
+    "timezone": "UTC",
+    "venue": "Metropolitano Stadium",
+    "slug": "atletico-madrid-vs-getafe",
+    "status": "SCHEDULED",
+    "type": "NORMAL",
+    "allow_draw": true,
+    "big_match": false,
+    "derby": true,
+    "home_team_id": 3,
+    "away_team_id": 9,
+    "league_id": 1,
+    "season_id": 1,
+    "gameweek_id": 28,
+    "published": false,
+    "scoreOptions": [
+      { "home_score": 0, "away_score": 0 },
+      { "home_score": 1, "away_score": 0 },
+      { "home_score": 0, "away_score": 1 },
+      { "home_score": 1, "away_score": 1 },
+      { "home_score": 2, "away_score": 1 },
+      { "home_score": 1, "away_score": 2 }
+    ],
+    "adminMatchVote": {
+      "user_id": 1,
+      "home_votes": 0,
+      "draw_votes": 0,
+      "away_votes": 0
+    }
+  },
+  {
+    "home_team_name": "Real Oviedo",
+    "away_team_name": "Valencia",
+    "kickoff": "2026-03-14T17:30:00Z",
+    "timezone": "UTC",
+    "venue": "Carlos Tartiere Stadium",
+    "slug": "real-oviedo-vs-valencia",
+    "status": "SCHEDULED",
+    "type": "NORMAL",
+    "allow_draw": true,
+    "big_match": false,
+    "derby": false,
+    "home_team_id": 20,
+    "away_team_id": 12,
+    "league_id": 1,
+    "season_id": 1,
+    "gameweek_id": 28,
+    "published": false,
+    "scoreOptions": [
+      { "home_score": 0, "away_score": 0 },
+      { "home_score": 1, "away_score": 0 },
+      { "home_score": 0, "away_score": 1 },
+      { "home_score": 1, "away_score": 1 }
+    ],
+    "adminMatchVote": {
+      "user_id": 1,
+      "home_votes": 0,
+      "draw_votes": 0,
+      "away_votes": 0
+    }
+  },
+  {
+    "home_team_name": "Real Madrid",
+    "away_team_name": "Elche",
+    "kickoff": "2026-03-14T20:00:00Z",
+    "timezone": "UTC",
+    "venue": "Santiago Bernabéu",
+    "slug": "real-madrid-vs-elche",
+    "status": "SCHEDULED",
+    "type": "NORMAL",
+    "allow_draw": true,
+    "big_match": true,
+    "derby": false,
+    "home_team_id": 2,
+    "away_team_id": 17,
+    "league_id": 1,
+    "season_id": 1,
+    "gameweek_id": 28,
+    "published": false,
+    "scoreOptions": [
+      { "home_score": 1, "away_score": 0 },
+      { "home_score": 2, "away_score": 0 },
+      { "home_score": 2, "away_score": 1 },
+      { "home_score": 3, "away_score": 1 }
+    ],
+    "adminMatchVote": {
+      "user_id": 1,
+      "home_votes": 0,
+      "draw_votes": 0,
+      "away_votes": 0
+    }
+  },
+  {
+    "home_team_name": "Mallorca",
+    "away_team_name": "Espanyol",
+    "kickoff": "2026-03-15T13:00:00Z",
+    "timezone": "UTC",
+    "venue": "Visit Mallorca Estadi",
+    "slug": "mallorca-vs-espanyol",
+    "status": "SCHEDULED",
+    "type": "NORMAL",
+    "allow_draw": true,
+    "big_match": false,
+    "derby": false,
+    "home_team_id": 18,
+    "away_team_id": 7,
+    "league_id": 1,
+    "season_id": 1,
+    "gameweek_id": 28,
+    "published": false,
+    "scoreOptions": [
+      { "home_score": 0, "away_score": 0 },
+      { "home_score": 1, "away_score": 0 },
+      { "home_score": 0, "away_score": 1 },
+      { "home_score": 1, "away_score": 1 }
+    ],
+    "adminMatchVote": {
+      "user_id": 1,
+      "home_votes": 0,
+      "draw_votes": 0,
+      "away_votes": 0
+    }
+  },
+  {
+    "home_team_name": "Barcelona",
+    "away_team_name": "Sevilla",
+    "kickoff": "2026-03-15T15:15:00Z",
+    "timezone": "UTC",
+    "venue": "Spotify Camp Nou",
+    "slug": "barcelona-vs-sevilla",
+    "status": "SCHEDULED",
+    "type": "NORMAL",
+    "allow_draw": true,
+    "big_match": true,
+    "derby": false,
+    "home_team_id": 1,
+    "away_team_id": 14,
+    "league_id": 1,
+    "season_id": 1,
+    "gameweek_id": 28,
+    "published": false,
+    "scoreOptions": [
+      { "home_score": 1, "away_score": 0 },
+      { "home_score": 2, "away_score": 0 },
+      { "home_score": 2, "away_score": 1 },
+      { "home_score": 3, "away_score": 1 }
+    ],
+    "adminMatchVote": {
+      "user_id": 1,
+      "home_votes": 0,
+      "draw_votes": 0,
+      "away_votes": 0
+    }
+  },
+  {
+    "home_team_name": "Real Betis",
+    "away_team_name": "Celta Vigo",
+    "kickoff": "2026-03-15T17:30:00Z",
+    "timezone": "UTC",
+    "venue": "Benito Villamarín Stadium",
+    "slug": "real-betis-vs-celta-vigo",
+    "status": "SCHEDULED",
+    "type": "NORMAL",
+    "allow_draw": true,
+    "big_match": false,
+    "derby": false,
+    "home_team_id": 5,
+    "away_team_id": 6,
+    "league_id": 1,
+    "season_id": 1,
+    "gameweek_id": 28,
+    "published": false,
+    "scoreOptions": [
+      { "home_score": 0, "away_score": 0 },
+      { "home_score": 1, "away_score": 0 },
+      { "home_score": 0, "away_score": 1 },
+      { "home_score": 1, "away_score": 1 }
+    ],
+    "adminMatchVote": {
+      "user_id": 1,
+      "home_votes": 0,
+      "draw_votes": 0,
+      "away_votes": 0
+    }
+  },
+  {
+    "home_team_name": "Real Sociedad",
+    "away_team_name": "Osasuna",
+    "kickoff": "2026-03-15T20:00:00Z",
+    "timezone": "UTC",
+    "venue": "Reale Arena",
+    "slug": "real-sociedad-vs-osasuna",
+    "status": "SCHEDULED",
+    "type": "NORMAL",
+    "allow_draw": true,
+    "big_match": false,
+    "derby": false,
+    "home_team_id": 8,
+    "away_team_id": 11,
+    "league_id": 1,
+    "season_id": 1,
+    "gameweek_id": 28,
+    "published": false,
+    "scoreOptions": [
+      { "home_score": 0, "away_score": 0 },
+      { "home_score": 1, "away_score": 0 },
+      { "home_score": 0, "away_score": 1 },
+      { "home_score": 1, "away_score": 1 }
+    ],
+    "adminMatchVote": {
+      "user_id": 1,
+      "home_votes": 0,
+      "draw_votes": 0,
+      "away_votes": 0
+    }
+  },
+  {
+    "home_team_name": "Rayo Vallecano",
+    "away_team_name": "Levante",
+    "kickoff": "2026-03-16T20:00:00Z",
+    "timezone": "UTC",
+    "venue": "Campo de Fútbol de Vallecas",
+    "slug": "rayo-vallecano-vs-levante",
+    "status": "SCHEDULED",
+    "type": "NORMAL",
+    "allow_draw": true,
+    "big_match": false,
+    "derby": false,
+    "home_team_id": 13,
+    "away_team_id": 19,
+    "league_id": 1,
+    "season_id": 1,
+    "gameweek_id": 28,
+    "published": false,
+    "scoreOptions": [
+      { "home_score": 0, "away_score": 0 },
+      { "home_score": 1, "away_score": 0 },
+      { "home_score": 0, "away_score": 1 },
+      { "home_score": 1, "away_score": 1 }
+    ],
+    "adminMatchVote": {
+      "user_id": 1,
+      "home_votes": 0,
+      "draw_votes": 0,
+      "away_votes": 0
+    }
+  }
+]

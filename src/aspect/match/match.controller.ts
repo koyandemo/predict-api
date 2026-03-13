@@ -35,6 +35,7 @@ export async function createMatchController(
       home_team_id,
       away_team_id,
       league_id,
+      season_id,
     }: Omit<MatchT, "id"> & { timezone: string } = req.body;
 
     if (
@@ -73,6 +74,7 @@ export async function createMatchController(
         home_team_id,
         away_team_id,
         league_id,
+        season_id
       },
     });
 
@@ -100,7 +102,7 @@ export async function getMatchesController(
       to,
       search,
       page = "1",
-      limit = "10",
+      limit = "100",
     } = req.query;
 
     const where: any = {};
@@ -215,12 +217,12 @@ export async function getMatchBySlugController(
   res: Response
 ): Promise<Response<MatchT>> {
   try {
-    const { idOrSlug } = req.params;
+    const { slug } = req.params;
 
-    const isId = !isNaN(Number(idOrSlug));
+    const isId = !isNaN(Number(slug));
 
     const match = await prisma.match.findFirst({
-      where: isId ? { id: Number(idOrSlug) } : { slug: idOrSlug as string },
+      where: isId ? { id: Number(slug) } : { slug: slug as string },
       include: {
         home_team: true,
         away_team: true,

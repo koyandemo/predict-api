@@ -1,0 +1,308 @@
+[
+    {
+      "home_team_name": "Inter Milan",
+      "away_team_name": "Torino FC",
+      "kickoff": "2026-03-20T19:45:00Z",
+      "timezone": "UTC",
+      "venue": "San Siro",
+      "slug": "inter-milan-vs-torino",
+      "status": "SCHEDULED",
+      "type": "NORMAL",
+      "allow_draw": true,
+      "big_match": false,
+      "derby": false,
+      "home_team_id": 1,
+      "away_team_id": 15,
+      "league_id": 2,
+      "season_id": 1,
+      "gameweek_id": 29,
+      "published": false,
+      "scoreOptions": [
+        { "home_score": 1, "away_score": 0 },
+        { "home_score": 2, "away_score": 0 },
+        { "home_score": 2, "away_score": 1 },
+        { "home_score": 1, "away_score": 1 }
+      ],
+      "adminMatchVote": {
+        "user_id": 1,
+        "home_votes": 0,
+        "draw_votes": 0,
+        "away_votes": 0
+      }
+    },
+    {
+      "home_team_name": "AC Milan",
+      "away_team_name": "Udinese Calcio",
+      "kickoff": "2026-03-21T14:00:00Z",
+      "timezone": "UTC",
+      "venue": "San Siro",
+      "slug": "ac-milan-vs-udinese",
+      "status": "SCHEDULED",
+      "type": "NORMAL",
+      "allow_draw": true,
+      "big_match": false,
+      "derby": false,
+      "home_team_id": 2,
+      "away_team_id": 11,
+      "league_id": 2,
+      "season_id": 1,
+      "gameweek_id": 29,
+      "published": false,
+      "scoreOptions": [
+        { "home_score": 1, "away_score": 0 },
+        { "home_score": 2, "away_score": 0 },
+        { "home_score": 2, "away_score": 1 },
+        { "home_score": 1, "away_score": 1 }
+      ],
+      "adminMatchVote": {
+        "user_id": 1,
+        "home_votes": 0,
+        "draw_votes": 0,
+        "away_votes": 0
+      }
+    },
+    {
+      "home_team_name": "SSC Napoli",
+      "away_team_name": "Bologna FC 1909",
+      "kickoff": "2026-03-21T17:00:00Z",
+      "timezone": "UTC",
+      "venue": "Stadio Diego Armando Maradona",
+      "slug": "napoli-vs-bologna",
+      "status": "SCHEDULED",
+      "type": "NORMAL",
+      "allow_draw": true,
+      "big_match": true,
+      "derby": false,
+      "home_team_id": 3,
+      "away_team_id": 8,
+      "league_id": 2,
+      "season_id": 1,
+      "gameweek_id": 29,
+      "published": false,
+      "scoreOptions": [
+        { "home_score": 1, "away_score": 0 },
+        { "home_score": 2, "away_score": 1 },
+        { "home_score": 2, "away_score": 0 },
+        { "home_score": 1, "away_score": 1 }
+      ],
+      "adminMatchVote": {
+        "user_id": 1,
+        "home_votes": 0,
+        "draw_votes": 0,
+        "away_votes": 0
+      }
+    },
+    {
+      "home_team_name": "Juventus FC",
+      "away_team_name": "Atalanta BC",
+      "kickoff": "2026-03-21T19:45:00Z",
+      "timezone": "UTC",
+      "venue": "Allianz Stadium",
+      "slug": "juventus-vs-atalanta",
+      "status": "SCHEDULED",
+      "type": "NORMAL",
+      "allow_draw": true,
+      "big_match": true,
+      "derby": false,
+      "home_team_id": 6,
+      "away_team_id": 7,
+      "league_id": 2,
+      "season_id": 1,
+      "gameweek_id": 29,
+      "published": false,
+      "scoreOptions": [
+        { "home_score": 1, "away_score": 0 },
+        { "home_score": 2, "away_score": 1 },
+        { "home_score": 1, "away_score": 1 },
+        { "home_score": 0, "away_score": 1 }
+      ],
+      "adminMatchVote": {
+        "user_id": 1,
+        "home_votes": 0,
+        "draw_votes": 0,
+        "away_votes": 0
+      }
+    },
+    {
+      "home_team_name": "AS Roma",
+      "away_team_name": "SS Lazio",
+      "kickoff": "2026-03-22T14:00:00Z",
+      "timezone": "UTC",
+      "venue": "Stadio Olimpico",
+      "slug": "roma-vs-lazio",
+      "status": "SCHEDULED",
+      "type": "NORMAL",
+      "allow_draw": true,
+      "big_match": true,
+      "derby": true,
+      "home_team_id": 5,
+      "away_team_id": 10,
+      "league_id": 2,
+      "season_id": 1,
+      "gameweek_id": 29,
+      "published": false,
+      "scoreOptions": [
+        { "home_score": 1, "away_score": 0 },
+        { "home_score": 2, "away_score": 1 },
+        { "home_score": 1, "away_score": 1 },
+        { "home_score": 0, "away_score": 1 }
+      ],
+      "adminMatchVote": {
+        "user_id": 1,
+        "home_votes": 0,
+        "draw_votes": 0,
+        "away_votes": 0
+      }
+    },
+    {
+      "home_team_name": "ACF Fiorentina",
+      "away_team_name": "Genoa CFC",
+      "kickoff": "2026-03-22T17:00:00Z",
+      "timezone": "UTC",
+      "venue": "Stadio Artemio Franchi",
+      "slug": "fiorentina-vs-genoa",
+      "status": "SCHEDULED",
+      "type": "NORMAL",
+      "allow_draw": true,
+      "big_match": false,
+      "derby": false,
+      "home_team_id": 17,
+      "away_team_id": 13,
+      "league_id": 2,
+      "season_id": 1,
+      "gameweek_id": 29,
+      "published": false,
+      "scoreOptions": [
+        { "home_score": 1, "away_score": 0 },
+        { "home_score": 2, "away_score": 1 },
+        { "home_score": 1, "away_score": 1 },
+        { "home_score": 0, "away_score": 1 }
+      ],
+      "adminMatchVote": {
+        "user_id": 1,
+        "home_votes": 0,
+        "draw_votes": 0,
+        "away_votes": 0
+      }
+    },
+    {
+      "home_team_name": "Parma Calcio 1913",
+      "away_team_name": "Como 1907",
+      "kickoff": "2026-03-22T19:45:00Z",
+      "timezone": "UTC",
+      "venue": "Stadio Ennio Tardini",
+      "slug": "parma-vs-como",
+      "status": "SCHEDULED",
+      "type": "NORMAL",
+      "allow_draw": true,
+      "big_match": false,
+      "derby": false,
+      "home_team_id": 12,
+      "away_team_id": 4,
+      "league_id": 2,
+      "season_id": 1,
+      "gameweek_id": 29,
+      "published": false,
+      "scoreOptions": [
+        { "home_score": 1, "away_score": 0 },
+        { "home_score": 1, "away_score": 1 },
+        { "home_score": 0, "away_score": 1 }
+      ],
+      "adminMatchVote": {
+        "user_id": 1,
+        "home_votes": 0,
+        "draw_votes": 0,
+        "away_votes": 0
+      }
+    },
+    {
+      "home_team_name": "Cagliari Calcio",
+      "away_team_name": "US Lecce",
+      "kickoff": "2026-03-23T14:00:00Z",
+      "timezone": "UTC",
+      "venue": "Unipol Domus",
+      "slug": "cagliari-vs-lecce",
+      "status": "SCHEDULED",
+      "type": "NORMAL",
+      "allow_draw": true,
+      "big_match": false,
+      "derby": false,
+      "home_team_id": 14,
+      "away_team_id": 16,
+      "league_id": 2,
+      "season_id": 1,
+      "gameweek_id": 29,
+      "published": false,
+      "scoreOptions": [
+        { "home_score": 1, "away_score": 0 },
+        { "home_score": 1, "away_score": 1 },
+        { "home_score": 0, "away_score": 1 }
+      ],
+      "adminMatchVote": {
+        "user_id": 1,
+        "home_votes": 0,
+        "draw_votes": 0,
+        "away_votes": 0
+      }
+    },
+    {
+      "home_team_name": "US Sassuolo Calcio",
+      "away_team_name": "Hellas Verona FC",
+      "kickoff": "2026-03-23T17:00:00Z",
+      "timezone": "UTC",
+      "venue": "Mapei Stadium",
+      "slug": "sassuolo-vs-verona",
+      "status": "SCHEDULED",
+      "type": "NORMAL",
+      "allow_draw": true,
+      "big_match": false,
+      "derby": false,
+      "home_team_id": 9,
+      "away_team_id": 19,
+      "league_id": 2,
+      "season_id": 1,
+      "gameweek_id": 29,
+      "published": false,
+      "scoreOptions": [
+        { "home_score": 1, "away_score": 0 },
+        { "home_score": 1, "away_score": 1 },
+        { "home_score": 0, "away_score": 1 }
+      ],
+      "adminMatchVote": {
+        "user_id": 1,
+        "home_votes": 0,
+        "draw_votes": 0,
+        "away_votes": 0
+      }
+    },
+    {
+      "home_team_name": "Pisa SC",
+      "away_team_name": "US Cremonese",
+      "kickoff": "2026-03-23T19:45:00Z",
+      "timezone": "UTC",
+      "venue": "Arena Garibaldi",
+      "slug": "pisa-vs-cremonese",
+      "status": "SCHEDULED",
+      "type": "NORMAL",
+      "allow_draw": true,
+      "big_match": false,
+      "derby": false,
+      "home_team_id": 20,
+      "away_team_id": 18,
+      "league_id": 2,
+      "season_id": 1,
+      "gameweek_id": 29,
+      "published": false,
+      "scoreOptions": [
+        { "home_score": 1, "away_score": 0 },
+        { "home_score": 1, "away_score": 1 },
+        { "home_score": 0, "away_score": 1 }
+      ],
+      "adminMatchVote": {
+        "user_id": 1,
+        "home_votes": 0,
+        "draw_votes": 0,
+        "away_votes": 0
+      }
+    }
+  ]

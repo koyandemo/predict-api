@@ -1,0 +1,182 @@
+[
+    {
+      "name": "Barcelona",
+      "slug": "barcelona",
+      "short_code": "BAR",
+      "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/83.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Spotify Camp Nou"
+    },
+    {
+      "name": "Real Madrid",
+      "slug": "real-madrid",
+      "short_code": "RMA",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/250px-Real_Madrid_CF.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Santiago Bernabéu"
+    },
+    {
+      "name": "Atlético Madrid",
+      "slug": "atletico-madrid",
+      "short_code": "ATM",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/f/f9/Atletico_Madrid_Logo_2024.svg",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Metropolitano Stadium"
+    },
+    {
+      "name": "Villarreal",
+      "slug": "villarreal",
+      "short_code": "VIL",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Villarreal_CF_logo-en.svg/1280px-Villarreal_CF_logo-en.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Estadio de la Cerámica"
+    },
+    {
+      "name": "Real Betis",
+      "slug": "real-betis",
+      "short_code": "BET",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Real_betis_logo.svg/1280px-Real_betis_logo.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Benito Villamarín Stadium"
+    },
+    {
+      "name": "Celta Vigo",
+      "slug": "celta-vigo",
+      "short_code": "CEL",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/1/12/RC_Celta_de_Vigo_logo.svg/960px-RC_Celta_de_Vigo_logo.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Abanca-Balaídos"
+    },
+    {
+      "name": "Espanyol",
+      "slug": "espanyol",
+      "short_code": "ESP",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/9/92/RCD_Espanyol_crest.svg/250px-RCD_Espanyol_crest.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "RCDE Stadium"
+    },
+    {
+      "name": "Real Sociedad",
+      "slug": "real-sociedad",
+      "short_code": "RSO",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f1/Real_Sociedad_logo.svg/250px-Real_Sociedad_logo.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Reale Arena"
+    },
+    {
+      "name": "Getafe",
+      "slug": "getafe",
+      "short_code": "GET",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/4/46/Getafe_logo.svg/1280px-Getafe_logo.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Coliseum Alfonso Pérez"
+    },
+    {
+      "name": "Athletic Club",
+      "slug": "athletic-club",
+      "short_code": "ATH",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Club_Athletic_Bilbao_logo.svg/250px-Club_Athletic_Bilbao_logo.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "San Mamés Stadium"
+    },
+    {
+      "name": "Osasuna",
+      "slug": "osasuna",
+      "short_code": "OSA",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/3/38/CA_Osasuna_2024_crest.svg/960px-CA_Osasuna_2024_crest.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "El Sadar"
+    },
+    {
+      "name": "Valencia",
+      "slug": "valencia",
+      "short_code": "VAL",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/c/ce/Valenciacf.svg",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Mestalla"
+    },
+    {
+      "name": "Rayo Vallecano",
+      "slug": "rayo-vallecano",
+      "short_code": "RAY",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/Rayo_Vallecano_logo.svg/1280px-Rayo_Vallecano_logo.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Campo de Fútbol de Vallecas"
+    },
+    {
+      "name": "Sevilla",
+      "slug": "sevilla",
+      "short_code": "SEV",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/Sevilla_FC_logo.svg/1280px-Sevilla_FC_logo.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Ramón Sánchez-Pizjuán Stadium"
+    },
+    {
+      "name": "Girona",
+      "slug": "girona",
+      "short_code": "GIR",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/Girona_FC_Logo.svg/1280px-Girona_FC_Logo.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Estadi Montilivi"
+    },
+    {
+      "name": "Alavés",
+      "slug": "alaves",
+      "short_code": "ALA",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f8/Deportivo_Alaves_logo_%282020%29.svg/1280px-Deportivo_Alaves_logo_%282020%29.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Mendizorrotza"
+    },
+    {
+      "name": "Elche",
+      "slug": "elche",
+      "short_code": "ELC",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Elche_CF_logo.svg/1280px-Elche_CF_logo.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Estadio Martínez Valero"
+    },
+    {
+      "name": "Mallorca",
+      "slug": "mallorca",
+      "short_code": "MLL",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Rcd_mallorca.svg/960px-Rcd_mallorca.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Visit Mallorca Estadi"
+    },
+    {
+      "name": "Levante",
+      "slug": "levante",
+      "short_code": "LEV",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Levante_Uni%C3%B3n_Deportiva%2C_S.A.D._logo.svg/1280px-Levante_Uni%C3%B3n_Deportiva%2C_S.A.D._logo.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Ciutat de València Stadium"
+    },
+    {
+      "name": "Real Oviedo",
+      "slug": "real-oviedo",
+      "short_code": "OVI",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/Real_Oviedo_logo.svg/960px-Real_Oviedo_logo.svg.png",
+      "country": "Spain",
+      "type": "club",
+      "venue": "Carlos Tartiere Stadium"
+    }
+  ]

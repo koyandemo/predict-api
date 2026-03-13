@@ -92,6 +92,8 @@ model League {
 
   teams   Team[]
   matches Match[]
+  
+  league_seasons LeagueSeason[]
 }
 
 //////////////////////
@@ -144,6 +146,8 @@ model Match {
 
   published Boolean @default(false)
 
+  home_team_name String?
+  away_team_name String?
   home_team_id Int
   home_team    Team @relation("HomeTeam", fields: [home_team_id], references: [id])
 
@@ -153,6 +157,12 @@ model Match {
   league_id Int
   league    League @relation(fields: [league_id], references: [id])
 
+  season_id Int
+  season Season @relation(fields: [season_id], references: [id])
+
+  gameweek_id Int?
+  gameweek GameWeek? @relation(fields: [gameweek_id], references: [id])
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -161,6 +171,63 @@ model Match {
   comments       Comment[]
   scoreOptions   ScoreOption[]
   adminMatchVote AdminMatchVote?
+}
+
+//////////////////////
+// SEASON
+//////////////////////
+
+model Season {
+  id Int @id @default(autoincrement())
+
+  name String @unique
+  year Int?
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  league_seasons LeagueSeason[]
+
+  game_weeks GameWeek[]
+  matches Match[]
+}
+
+//////////////////////
+// LEAGUE SEASON
+//////////////////////
+
+model LeagueSeason {
+  id Int @id @default(autoincrement())
+
+  league_id Int
+  season_id Int
+
+  league League @relation(fields: [league_id], references: [id])
+  season Season @relation(fields: [season_id], references: [id])
+
+  created_at DateTime @default(now())
+
+  @@unique([league_id, season_id])
+}
+
+//////////////////////
+// GameWeek
+//////////////////////
+
+model GameWeek {
+  id Int @id @default(autoincrement())
+
+  number Int
+
+  season_id Int
+  season Season @relation(fields: [season_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  matches Match[]
+
+  @@unique([season_id, number])
 }
 
 //////////////////////

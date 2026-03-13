@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Premier League",
+    "country": "England",
+    "slug": "premier-league",
+    "logo_url": "https://www.clipartmax.com/png/small/165-1655035_premier-league-logo-new.png",
+    "sort_order": 1
+  },
+  {
+    "name": "La Liga",
+    "country": "Spain",
+    "slug": "la-liga",
+    "logo_url": "https://pngdownload.io/wp-content/uploads/2023/12/LaLiga-Logo-PNG-Official-Symbol-for-Football-League-Transparent-jpg.webp",
+    "sort_order": 2
+  },
+  {
+    "name": "Serie A",
+    "country": "Italy",
+    "slug": "serie-a",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Serie_A_logo_2022.svg/1280px-Serie_A_logo_2022.svg.png",
+    "sort_order": 3
+  },
+  {
+    "name": "Bundesliga",
+    "country": "Germany",
+    "slug": "bundesliga",
+    "logo_url": "https://static.vecteezy.com/system/resources/previews/010/994/305/non_2x/bundesliga-logo-symbol-white-design-germany-football-european-countries-football-teams-illustration-with-red-background-free-vector.jpg",
+    "sort_order": 4
+  },
+  {
+    "name": "Ligue 1",
+    "country": "France",
+    "slug": "ligue-1",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Ligue1_logo.png",
+    "sort_order": 5
+  },
+  {
+    "name": "Eredivisie",
+    "country": "Netherlands",
+    "slug": "eredivisie",
+    "logo_url": "https://i.pinimg.com/736x/5c/7e/7b/5c7e7b70cd67fa9a59d626a7efdf3a19.jpg",
+    "sort_order": 6
+  },
+  {
+    "name": "Primeira Liga",
+    "country": "Portugal",
+    "slug": "primeira-liga",
+    "logo_url": "https://p7.hiclipart.com/preview/366/912/54/2012-13-primeira-liga-taca-de-portugal-ligapro-2011-12-primeira-liga-football-thumbnail.jpg",
+    "sort_order": 7
+  },
+  {
+    "name": "Belgian Pro League",
+    "country": "Belgium",
+    "slug": "belgian-pro-league",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Pro_League_logo2020.jpg",
+    "sort_order": 8
+  },
+  {
+    "name": "Scottish Premiership",
+    "country": "Scotland",
+    "slug": "scottish-premiership",
+    "logo_url": "https://sportiger.de/cdn/shop/files/original-spfl-scottish-premiership-logo-patch-24-26-3392385.png?v=1757717221",
+    "sort_order": 9
+  },
+  {
+    "name": "Super Lig",
+    "country": "Turkey",
+    "slug": "super-lig",
+    "logo_url": "https://b.fssta.com/uploads/application/soccer/competition-logos/TurkishSuperLig.png",
+    "sort_order": 10
+  },
+  {
+    "name": "Swiss Super League",
+    "country": "Switzerland",
+    "slug": "swiss-super-league",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/leaguelogos/soccer/500/17.png",
+    "sort_order": 11
+  },
+  {
+    "name": "Austrian Bundesliga",
+    "country": "Austria",
+    "slug": "austrian-bundesliga",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/2/29/Admiral_Bundesliga.svg/960px-Admiral_Bundesliga.svg.png",
+    "sort_order": 12
+  },
+  {
+    "name": "Danish Superliga",
+    "country": "Denmark",
+    "slug": "danish-superliga",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/3F_Superliga_Logo_2024.png",
+    "sort_order": 13
+  },
+  {
+    "name": "Greek Super League",
+    "country": "Greece",
+    "slug": "greek-super-league",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/3F_Superliga_Logo_2024.png",
+    "sort_order": 14
+  },
+  {
+    "name": "Czech First League",
+    "country": "Czech Republic",
+    "slug": "czech-first-league",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/7/78/Chance_Liga%2C_Czech_First_League%2C_since_2024.jpg/250px-Chance_Liga%2C_Czech_First_League%2C_since_2024.jpg",
+    "sort_order": 15
+  }
+]

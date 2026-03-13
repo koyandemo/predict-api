@@ -1,0 +1,182 @@
+[
+    {
+      "name": "Inter Milan",
+      "slug": "inter",
+      "short_code": "INT",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/250px-FC_Internazionale_Milano_2021.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "San Siro"
+    },
+    {
+      "name": "AC Milan",
+      "slug": "ac-milan",
+      "short_code": "MIL",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/250px-Logo_of_AC_Milan.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "San Siro"
+    },
+    {
+      "name": "SSC Napoli",
+      "slug": "napoli",
+      "short_code": "NAP",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/SSC_Napoli_2025_%28white_and_azure%29.svg",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Stadio Diego Armando Maradona"
+    },
+    {
+      "name": "Como 1907",
+      "slug": "como",
+      "short_code": "COM",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Calcio_Como_-_logo_%28Italy%2C_2019-%29.svg/250px-Calcio_Como_-_logo_%28Italy%2C_2019-%29.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Stadio Giuseppe Sinigaglia"
+    },
+    {
+      "name": "AS Roma",
+      "slug": "roma",
+      "short_code": "ROM",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f7/AS_Roma_logo_%282017%29.svg/250px-AS_Roma_logo_%282017%29.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Stadio Olimpico"
+    },
+    {
+      "name": "Juventus FC",
+      "slug": "juventus",
+      "short_code": "JUV",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Juventus_FC_-_logo_black_%28Italy%2C_2020%29.svg",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Allianz Stadium"
+    },
+    {
+      "name": "Atalanta BC",
+      "slug": "atalanta",
+      "short_code": "ATA",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/6/66/AtalantaBC.svg/250px-AtalantaBC.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Gewiss Stadium"
+    },
+    {
+      "name": "Bologna FC 1909",
+      "slug": "bologna",
+      "short_code": "BOL",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Bologna_F.C._1909_logo.svg/960px-Bologna_F.C._1909_logo.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Stadio Renato Dall'Ara"
+    },
+    {
+      "name": "US Sassuolo Calcio",
+      "slug": "sassuolo",
+      "short_code": "SAS",
+      "logo_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlBd8Zda4KZKgjRVIEVXMBZWjDkuQ3XxPmxg&s",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Mapei Stadium"
+    },
+    {
+      "name": "SS Lazio",
+      "slug": "lazio",
+      "short_code": "LAZ",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/ce/S.S._Lazio_badge.svg/1280px-S.S._Lazio_badge.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Stadio Olimpico"
+    },
+    {
+      "name": "Udinese Calcio",
+      "slug": "udinese",
+      "short_code": "UDI",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/ce/Udinese_Calcio_logo.svg/1280px-Udinese_Calcio_logo.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Bluenergy Stadium"
+    },
+    {
+      "name": "Parma Calcio 1913",
+      "slug": "parma",
+      "short_code": "PAR",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Logo_Parma_Calcio_1913_%28adozione_2016%29.svg/1280px-Logo_Parma_Calcio_1913_%28adozione_2016%29.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Stadio Ennio Tardini"
+    },
+    {
+      "name": "Genoa CFC",
+      "slug": "genoa",
+      "short_code": "GEN",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2c/Genoa_CFC_crest.svg/960px-Genoa_CFC_crest.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Stadio Luigi Ferraris"
+    },
+    {
+      "name": "Cagliari Calcio",
+      "slug": "cagliari",
+      "short_code": "CAG",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/6/61/Cagliari_Calcio_1920.svg/1280px-Cagliari_Calcio_1920.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Unipol Domus"
+    },
+    {
+      "name": "Torino FC",
+      "slug": "torino",
+      "short_code": "TOR",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/Torino_FC_Logo.svg/1280px-Torino_FC_Logo.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Stadio Olimpico Grande Torino"
+    },
+    {
+      "name": "US Lecce",
+      "slug": "lecce",
+      "short_code": "LEC",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/2/23/US_Lecce_crest.svg/1280px-US_Lecce_crest.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Stadio Via del Mare"
+    },
+    {
+      "name": "ACF Fiorentina",
+      "slug": "fiorentina",
+      "short_code": "FIO",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/ACF_Fiorentina_-_logo_%28Italy%2C_2022%29.svg/1280px-ACF_Fiorentina_-_logo_%28Italy%2C_2022%29.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Stadio Artemio Franchi"
+    },
+    {
+      "name": "US Cremonese",
+      "slug": "cremonese",
+      "short_code": "CRE",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/e/e1/US_Cremonese_logo.svg/1280px-US_Cremonese_logo.svg.png",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Stadio Giovanni Zini"
+    },
+    {
+      "name": "Hellas Verona FC",
+      "slug": "verona",
+      "short_code": "VER",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/9/92/Hellas_Verona_FC_logo_%282020%29.svg",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Stadio Marcantonio Bentegodi"
+    },
+    {
+      "name": "Pisa SC",
+      "slug": "pisa",
+      "short_code": "PIS",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/en/6/6b/Pisa_SC_crest.svg",
+      "country": "Italy",
+      "type": "club",
+      "venue": "Arena Garibaldi"
+    }
+  ]

@@ -18,6 +18,8 @@ export type MatchT = {
   home_team?: TeamT;
   away_team?: TeamT;
   league?: LeagueT;
+  season_id:number;
+  gameweek_id:number;
 
   home_team_id: number;
   away_team_id: number;

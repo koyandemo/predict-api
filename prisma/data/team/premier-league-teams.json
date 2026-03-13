@@ -1,0 +1,182 @@
+[
+  {
+    "name": "Arsenal",
+    "slug": "arsenal",
+    "short_code": "ARS",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Emirates Stadium"
+  },
+  {
+    "name": "Manchester City",
+    "slug": "manchester-city",
+    "short_code": "MCI",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Etihad Stadium"
+  },
+  {
+    "name": "Manchester United",
+    "slug": "manchester-united",
+    "short_code": "MUN",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/7/7a/Manchester_United_FC_crest.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Old Trafford"
+  },
+  {
+    "name": "Aston Villa",
+    "slug": "aston-villa",
+    "short_code": "AVL",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/9/9a/Aston_Villa_FC_new_crest.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Villa Park"
+  },
+  {
+    "name": "Chelsea",
+    "slug": "chelsea",
+    "short_code": "CHE",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/c/cc/Chelsea_FC.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Stamford Bridge"
+  },
+  {
+    "name": "Liverpool",
+    "slug": "liverpool",
+    "short_code": "LIV",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Anfield"
+  },
+  {
+    "name": "Brentford",
+    "slug": "brentford",
+    "short_code": "BRE",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/2/2a/Brentford_FC_crest.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Gtech Community Stadium"
+  },
+  {
+    "name": "Everton",
+    "slug": "everton",
+    "short_code": "EVE",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/7/7c/Everton_FC_logo.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Goodison Park"
+  },
+  {
+    "name": "Bournemouth",
+    "slug": "bournemouth",
+    "short_code": "BOU",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/e/e5/AFC_Bournemouth_%282013%29.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Vitality Stadium"
+  },
+  {
+    "name": "Fulham",
+    "slug": "fulham",
+    "short_code": "FUL",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/e/eb/Fulham_FC_%28shield%29.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Craven Cottage"
+  },
+  {
+    "name": "Sunderland",
+    "slug": "sunderland",
+    "short_code": "SUN",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/7/77/Logo_Sunderland.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Stadium of Light"
+  },
+  {
+    "name": "Newcastle United",
+    "slug": "newcastle-united",
+    "short_code": "NEW",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/5/56/Newcastle_United_Logo.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "St James' Park"
+  },
+  {
+    "name": "Crystal Palace",
+    "slug": "crystal-palace",
+    "short_code": "CRY",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/a/a2/Crystal_Palace_FC_logo_%282022%29.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Selhurst Park"
+  },
+  {
+    "name": "Brighton",
+    "slug": "brighton",
+    "short_code": "BHA",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/d/d0/Brighton_and_Hove_Albion_FC_crest.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Amex Stadium"
+  },
+  {
+    "name": "Leeds United",
+    "slug": "leeds-united",
+    "short_code": "LEE",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/54/Leeds_United_F.C._logo.svg/1280px-Leeds_United_F.C._logo.svg.png",
+    "country": "England",
+    "type": "club",
+    "venue": "Elland Road"
+  },
+  {
+    "name": "Tottenham Hotspur",
+    "slug": "tottenham",
+    "short_code": "TOT",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/b/b4/Tottenham_Hotspur.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Tottenham Hotspur Stadium"
+  },
+  {
+    "name": "Nottingham Forest",
+    "slug": "nottingham-forest",
+    "short_code": "NFO",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/e/e5/Nottingham_Forest_F.C._logo.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "City Ground"
+  },
+  {
+    "name": "West Ham United",
+    "slug": "west-ham",
+    "short_code": "WHU",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/c/c2/West_Ham_United_FC_logo.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "London Stadium"
+  },
+  {
+    "name": "Burnley",
+    "slug": "burnley",
+    "short_code": "BUR",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/6/6d/Burnley_FC_Logo.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Turf Moor"
+  },
+  {
+    "name": "Wolverhampton Wanderers",
+    "slug": "wolves",
+    "short_code": "WOL",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/c/c9/Wolverhampton_Wanderers_FC_crest.svg",
+    "country": "England",
+    "type": "club",
+    "venue": "Molineux Stadium"
+  }
+]
