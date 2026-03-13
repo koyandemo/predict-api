@@ -1,0 +1,164 @@
+[
+  {
+    "name": "Bayern Munich",
+    "slug": "bayern-munich",
+    "short_code": "BAY",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/132.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "Allianz Arena"
+  },
+  {
+    "name": "Borussia Dortmund",
+    "slug": "borussia-dortmund",
+    "short_code": "BVB",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/124.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "Signal Iduna Park"
+  },
+  {
+    "name": "TSG Hoffenheim",
+    "slug": "tsg-hoffenheim",
+    "short_code": "HOF",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/7911.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "PreZero Arena"
+  },
+  {
+    "name": "VfB Stuttgart",
+    "slug": "vfb-stuttgart",
+    "short_code": "VFB",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/134.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "MHP Arena"
+  },
+  {
+    "name": "RB Leipzig",
+    "slug": "rb-leipzig",
+    "short_code": "RBL",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/11420.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "Red Bull Arena"
+  },
+  {
+    "name": "Bayer Leverkusen",
+    "slug": "bayer-leverkusen",
+    "short_code": "B04",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/131.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "BayArena"
+  },
+  {
+    "name": "Eintracht Frankfurt",
+    "slug": "eintracht-frankfurt",
+    "short_code": "SGE",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/125.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "Deutsche Bank Park"
+  },
+  {
+    "name": "SC Freiburg",
+    "slug": "sc-freiburg",
+    "short_code": "SCF",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/126.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "Europa-Park Stadion"
+  },
+  {
+    "name": "FC Augsburg",
+    "slug": "fc-augsburg",
+    "short_code": "FCA",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/3841.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "WWK Arena"
+  },
+  {
+    "name": "Hamburg SV",
+    "slug": "hamburg-sv",
+    "short_code": "HSV",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/127.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "Volksparkstadion"
+  },
+  {
+    "name": "1. FC Union Berlin",
+    "slug": "union-berlin",
+    "short_code": "FCU",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/598.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "An der Alten Försterei"
+  },
+  {
+    "name": "Borussia Mönchengladbach",
+    "slug": "borussia-monchengladbach",
+    "short_code": "BMG",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/268.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "Borussia-Park"
+  },
+  {
+    "name": "Werder Bremen",
+    "slug": "werder-bremen",
+    "short_code": "SVW",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/137.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "wohninvest Weserstadion"
+  },
+  {
+    "name": "FC Cologne",
+    "slug": "fc-cologne",
+    "short_code": "KOE",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/122.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "RheinEnergieStadion"
+  },
+  {
+    "name": "Mainz",
+    "slug": "mainz",
+    "short_code": "M05",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/2950.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "MEWA Arena"
+  },
+  {
+    "name": "St. Pauli",
+    "slug": "st-pauli",
+    "short_code": "STP",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/270.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "Millerntor-Stadion"
+  },
+  {
+    "name": "VfL Wolfsburg",
+    "slug": "vfl-wolfsburg",
+    "short_code": "WOB",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/138.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "Volkswagen Arena"
+  },
+  {
+    "name": "1. FC Heidenheim 1846",
+    "slug": "heidenheim",
+    "short_code": "HDH",
+    "logo_url": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/6418.png",
+    "country": "Germany",
+    "type": "club",
+    "venue": "Voith-Arena"
+  }
+]

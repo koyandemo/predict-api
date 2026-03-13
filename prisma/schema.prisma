@@ -87,11 +87,15 @@ model League {
   slug       String  @unique
   sort_order Int     @default(0)
 
+  recommended_gameweek Int?
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
   teams   Team[]
   matches Match[]
+
+  published Boolean @default(false)
   
   league_seasons LeagueSeason[]
 }

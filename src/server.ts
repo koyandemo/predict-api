@@ -5,6 +5,8 @@ import leagueRoutes from "./aspect/league/league.routes";
 import teamRoutes from "./aspect/team/team.routes";
 import matchRoutes from "./aspect/match/match.routes";
 import commentRoutes from "./aspect/comment/comment.routes";
+import seasonRoutes from "./aspect/season/season.routes";
+import gameWeekRoutes from "./aspect/gameWeek/gameWeek.routes";
 import fileRoutes from "./aspect/file/file.route";
 import { authMiddle } from "./middleware/auth.middleware";
 import { ALLOWED_ORIGINS } from "./lib/utils";
@@ -21,7 +23,9 @@ app.use("/api/leagues", leagueRoutes);
 app.use("/api/teams", teamRoutes);
 app.use("/api/matches", matchRoutes);
 app.use("/api/comments", commentRoutes);
-app.use("/api/files",fileRoutes);
+app.use("/api/seasons", seasonRoutes);
+app.use("/api/gameWeeks", gameWeekRoutes);
+app.use("/api/files", fileRoutes);
 
 app.get("/", (req, res) => {
   res.send("Express + Neon + Prisma + TypeScript 🚀");

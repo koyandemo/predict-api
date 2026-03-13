@@ -1,5 +1,5 @@
 import { PrismaClient } from "../generated/prisma";
-import teams from "./data/team/seriaa-league-teams.json";
+import teams from "./data/team/bundesliga-league-teams.json";
 import { LEAGUE_ID } from "./utils";
 
 const prisma = new PrismaClient();

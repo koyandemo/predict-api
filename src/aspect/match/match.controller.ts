@@ -93,12 +93,14 @@ export async function getMatchesController(
 ): Promise<Response<{ data: MatchT[]; pagination: PaginationT }>> {
   try {
     const {
-      league,
+      league_id,
       status,
       type,
       published,
       team,
       from,
+      season_id,
+      gameweek_id,
       to,
       search,
       page = "1",
@@ -108,8 +110,16 @@ export async function getMatchesController(
     const where: any = {};
 
     // league filter
-    if (league) {
-      where.league_id = Number(league);
+    if (league_id) {
+      where.league_id = Number(league_id);
+    }
+
+    if(season_id){
+      where.season_id = Number(season_id);
+    }
+    
+     if(gameweek_id){
+      where.gameweek_id = Number(gameweek_id);
     }
 
     // status filter
@@ -185,6 +195,8 @@ export async function getMatchesController(
         home_team: true,
         away_team: true,
         league: true,
+        gameweek: true,
+        season: true,
       },
       orderBy: {
         kickoff: "asc",

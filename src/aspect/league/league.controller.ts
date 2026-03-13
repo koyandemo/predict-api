@@ -57,7 +57,14 @@ export async function getLeaguesController(
   res: Response
 ): Promise<Response<LeagueT[]>> {
   try {
+    const { published = true } = req.query;
+    const where: any = {};
+
+    if (published === true) {
+      where.published = true;
+    }
     const leagues = await prisma.league.findMany({
+      where,
       include: {
         teams: true,
       },
