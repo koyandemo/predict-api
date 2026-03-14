@@ -110,7 +110,6 @@ export async function getMatchesController(
 
     const where: any = {};
 
-    // league filter
     if (league_id) {
       where.league_id = Number(league_id);
     }
@@ -123,12 +122,10 @@ export async function getMatchesController(
       where.gameweek_id = Number(gameweek_id);
     }
 
-    // status filter
     if (status) {
       where.status = status;
     }
 
-    // type filter
     if (type) {
       where.type = type;
     }
@@ -137,12 +134,10 @@ export async function getMatchesController(
       where.group_name = group_name
     }
 
-    // published filter
-    if (published !== undefined) {
+    if (published) {
       where.published = published === "true";
     }
 
-    // team filter (home or away)
     if (team) {
       where.OR = [
         { home_team_id: Number(team) },
@@ -150,7 +145,6 @@ export async function getMatchesController(
       ];
     }
 
-    // date range filter
     if (from || to) {
       where.kickoff = {};
 
@@ -163,7 +157,6 @@ export async function getMatchesController(
       }
     }
 
-    // search filter
     if (search) {
       where.OR = [
         {
