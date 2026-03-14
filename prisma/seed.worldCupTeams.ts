@@ -1,7 +1,7 @@
 import prisma from "../src/prisma";
-import teams from "./data/team/premier-league-teams.json";
+import teams from "./data/team/world-cup-teams.json";
 
-const LEAGUE_SLUG = "premier-league";
+const LEAGUE_SLUG = "fifa-world-cup-2026";
 
 async function main() {
   try {
@@ -10,7 +10,7 @@ async function main() {
     });
 
     if (!league) {
-      console.error(`❌ League "${LEAGUE_SLUG}" not found. Please seed the league first.`);
+      console.error("❌ FIFA World Cup league not found. Please run seed.worldCupLeague.ts first.");
       return;
     }
 
@@ -28,7 +28,7 @@ async function main() {
       });
     }
 
-    console.log(`✅ ${teams.length} teams created/updated successfully for ${league.name}`);
+    console.log(`✅ ${teams.length} World Cup teams created/updated successfully`);
   } catch (e) {
     console.error(e);
   } finally {

@@ -2,7 +2,7 @@ import prisma from "../src/prisma";
 import data from "./data/match/serie-a/season/2025-2026/week-29.json";
 import { GAME_WEEK_ID, LEAGUE_ID, SEASON_ID } from "./utils";
 
-async function seedPremierLeague() {
+async function seedMatch() {
   console.log("🌱 Seeding Premier League matches...");
 
   for (const match of data) {
@@ -26,13 +26,6 @@ async function seedPremierLeague() {
         league_id: LEAGUE_ID,
       },
     });
-
-    // if (!homeTeam || !awayTeam) {
-    //   console.warn(
-    //     `⚠️ Skipping match because team not found: ${match.home_team_name} vs ${match.away_team_name}`
-    //   );
-    //   continue;
-    // }
 
     const createdMatch = await prisma.match.create({
       data: {
@@ -95,7 +88,7 @@ async function seedPremierLeague() {
   console.log("🎉 Premier League seed complete");
 }
 
-seedPremierLeague()
+seedMatch()
   .catch(console.error)
   .finally(async () => {
     await prisma.$disconnect();

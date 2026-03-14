@@ -2,7 +2,7 @@ import prisma from "../src/prisma";
 
 async function seedSeasons() {
   const startYear = 2025;
-  const endYear = 2030;
+  const endYear = 2026;
 
   const seasons:any = [];
 

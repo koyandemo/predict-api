@@ -77,12 +77,10 @@ export type ScorePredictionT = {
 };
 
 export interface ApiResScorePredictionT {
-  admin_votes: number;
   away_score: number;
   home_score: number;
   id: number;
   percent: number;
-  user_votes: number;
   current_user_vote: boolean;
   votes: number;
 }
@@ -110,16 +108,3 @@ export type AdminScorePredictionT = {
   created_at: Date;
   updated_at: Date;
 };
-
-// export type AdminMatchVoteT = {
-//   match_id: number,
-//   home_votes: 0,
-//   draw_votes: 0,
-//   away_votes: 0,
-//   total_votes: 0,
-//   home_percentage: 0,
-//   draw_percentage: 0,
-//   away_percentage: 0,
-//   user_votes: { home: 0, draw: 0, away: 0, total: 0 },
-//   admin_votes: { home: 0, draw: 0, away: 0, total: 0 },
-// };

@@ -3,23 +3,18 @@ import { SEASON_ID } from "./utils";
 
 async function seedLeagueSeasons() {
  
-  const leagues = Array.from({ length: 15 }, (_, i) => i + 1);
+  const leagues = await prisma.league.findMany();
 
-  const data = leagues.map((leagueId) => ({
-    league_id: leagueId,
-    season_id: SEASON_ID,
-  }));
-
-  for (const item of data) {
+  for (const item of leagues) {
     await prisma.leagueSeason.upsert({
       where: {
         league_id_season_id: {
-          league_id: item.league_id,
-          season_id: item.season_id,
+          league_id: item.id,
+          season_id: SEASON_ID,
         },
       },
       update: {},
-      create: item,
+      create: { league_id: item.id, season_id: SEASON_ID },
     });
   }
 

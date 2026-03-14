@@ -103,5 +103,14 @@
     "slug": "czech-first-league",
     "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/7/78/Chance_Liga%2C_Czech_First_League%2C_since_2024.jpg/250px-Chance_Liga%2C_Czech_First_League%2C_since_2024.jpg",
     "sort_order": 15
+  },
+  {
+    "name": "FIFA World Cup 2026",
+    "country": "USA/Canada/Mexico",
+    "slug": "fifa-world-cup-2026",
+    "logo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/250px-2026_FIFA_World_Cup_emblem.svg.png",
+    "sort_order": 16,
+    "is_tournament": true,
+    "published": true
   }
 ]

@@ -37,7 +37,7 @@ router.delete("/:id/score-option/key", deleteScoreOptionController);
 router.post("/:id/score-predictions/key", voteScorePredictionController);
 
 router.get("/:id/score-options-predictions", getPredictionResultsController);
-router.get("/:id/admin-match-votes", getAdminMatchVotesController);
+router.get("/:id/match-votes", getAdminMatchVotesController);
 router.post("/:id/update-admin-match-votes", updateAdminMatchVoteController);
 router.post(
   "/:id/update-admin-score-predictions",

@@ -101,6 +101,7 @@ export async function getMatchesController(
       from,
       season_id,
       gameweek_id,
+      group_name,
       to,
       search,
       page = "1",
@@ -130,6 +131,10 @@ export async function getMatchesController(
     // type filter
     if (type) {
       where.type = type;
+    }
+
+    if(group_name){
+      where.group_name = group_name
     }
 
     // published filter
@@ -556,7 +561,7 @@ export async function voteScorePredictionController(
 }
 
 /**
- * Get Prediction Results
+ * Get Prediction Results @check
  */
 export async function getPredictionResultsController(
   req: Request,
@@ -609,8 +614,8 @@ export async function getPredictionResultsController(
         away_score: o.away_score,
 
         votes,
-        user_votes: userVotes,
-        admin_votes: adminVotes,
+        u_votes: userVotes,
+        uu_votes: adminVotes,
 
         current_user_vote: votedOptionIds.has(o.id),
 
@@ -636,7 +641,7 @@ export async function getPredictionResultsController(
 }
 
 /**
- * Get Admin Match Votes
+ * Get Admin Match Votes @check
  */
 export async function getAdminMatchVotesController(
   req: Request,
@@ -712,14 +717,14 @@ export async function getAdminMatchVotesController(
 
       current_user_vote: currentUserVote?.vote ?? null,
 
-      user_votes: {
+      u_votes: {
         home: userHome,
         draw: userDraw,
         away: userAway,
         total: userTotal,
       },
 
-      admin_votes: {
+      uu_votes: {
         home: adminHome,
         draw: adminDraw,
         away: adminAway,
