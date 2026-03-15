@@ -2,20 +2,18 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
 export const authMiddle = (req: Request, res: Response, next: NextFunction) => {
-  // const isPrivate = req.path.includes("key");
-  //@ts-ignore
-  // if ("1" !== "1") {
-  //   return next();
-  // }
+  const isPrivate = req.path.includes("key");
+  if (!isPrivate) {
+    return next();
+  }
 
-  
   const authHeader = req.headers["authorization"];
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return next();
-    // return res
-    //   .status(401)
-    //   .json({ message: "Authorization header missing or malformed" });
+    return res
+      .status(401)
+      .json({ message: "Authorization header missing or malformed" });
   }
 
   const token = authHeader.split(" ")[1];

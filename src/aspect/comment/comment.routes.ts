@@ -9,11 +9,11 @@ import {
 
 const router = Router();
 
-router.post("/:id", createCommentController);
+router.post("/:id/key", createCommentController);
 router.get("/:id", getAllCommentsController);
-router.post("/:parentCommentId/replies", createReplyCommentController);
+router.post("/:parentCommentId/replies/key", createReplyCommentController);
 router.get("/:commentId/replies", getReplies);
-router.post("/:commentId/reactions", addReaction);
+router.post("/:commentId/reactions/key", addReaction);
 // router.get("/:id", getLeagueByIdController);
 // router.put("/:id/key", updateLeagueController);
 // router.delete("/:id/key", deleteLeagueController);

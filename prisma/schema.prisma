@@ -77,6 +77,10 @@ model User {
   commentReactions      CommentReaction[]
   adminMatchVotes       AdminMatchVote[]
   adminScorePredictions AdminScorePrediction[]
+
+   //for Team Winner for League Season base on user+admin vote
+  winnerVotes           WinnerVote[]
+  adminWinnerVotes      AdminWinnerVote[]
 }
 
 //////////////////////
@@ -137,6 +141,10 @@ model Team {
   participations Int?
   continental    String?
   isHost         Boolean @default(false)
+
+  //for Team Winner for League Season base on user+admin vote
+  winner_votes       WinnerVote[]
+  admin_winner_votes AdminWinnerVote[]
 }
 
 //////////////////////
@@ -227,7 +235,9 @@ model LeagueSeason {
   league League @relation(fields: [league_id], references: [id])
   season Season @relation(fields: [season_id], references: [id])
 
-  created_at DateTime @default(now())
+  created_at         DateTime          @default(now())
+  winner_votes       WinnerVote[]
+  admin_winner_votes AdminWinnerVote[]
 
   @@unique([league_id, season_id])
 }
@@ -273,6 +283,54 @@ model MatchVote {
   updated_at DateTime @updatedAt
 
   @@unique([user_id, match_id])
+}
+
+//for Team Winner for League Season base on user+admin vote
+//////////////////////
+// ADD WINNER VOTE 
+//////////////////////
+
+model WinnerVote {
+  id Int @id @default(autoincrement())
+
+  user_id Int
+  user    User @relation(fields: [user_id], references: [id])
+
+  league_season_id Int
+  league_season    LeagueSeason @relation(fields: [league_season_id], references: [id])
+
+  team_id Int
+  team    Team @relation(fields: [team_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([user_id, league_season_id])
+}
+
+//for Team Winner for League Season base on user+admin vote
+//////////////////////
+// ADMIN WINNER VOTE 
+//////////////////////
+
+model AdminWinnerVote {
+  id Int @id @default(autoincrement())
+
+  league_season_id Int
+  league_season    LeagueSeason @relation(fields: [league_season_id], references: [id])
+
+  team_id Int
+  team    Team @relation(fields: [team_id], references: [id])
+
+  user_id Int
+  user    User @relation(fields: [user_id], references: [id])
+
+  vote_count Int @default(0)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([league_season_id, team_id])
 }
 
 //////////////////////

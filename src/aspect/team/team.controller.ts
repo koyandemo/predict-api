@@ -187,3 +187,82 @@ export async function deleteTeamController(
     return errorResponse(res, "Failed to delete team", error.message, 500);
   }
 }
+
+/**
+ * Get Teams by Vote (for World Cup Voting Page)
+ * Returns all teams with their vote statistics, sorted by total votes
+ */
+export async function getTeamsByVoteController(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    const { leagueSeasonId } = req.params;
+
+    // Fetch all teams with their vote data
+    const teams = await prisma.team.findMany({
+      include: {
+        league: true,
+        winner_votes: leagueSeasonId
+          ? {
+              where: {
+                league_season_id: Number(leagueSeasonId),
+              },
+            }
+          : true,
+        admin_winner_votes: leagueSeasonId
+          ? {
+              where: {
+                league_season_id: Number(leagueSeasonId),
+              },
+            }
+          : true,
+      },
+    });
+
+    // Calculate vote statistics for each team
+    const teamsWithVotes = teams.map((team) => {
+      const userVotesCount = team.winner_votes?.length || 0;
+      const adminVotesCount =
+        team.admin_winner_votes?.reduce(
+          (sum, vote) => sum + vote.vote_count,
+          0
+        ) || 0;
+      const totalVotes = userVotesCount + adminVotesCount;
+      return {
+        id: team.id,
+        name: team.name,
+        slug: team.slug,
+        short_code: team.short_code,
+        logo_url: team.logo_url,
+        country: team.country,
+        type: team.type,
+        venue: team.venue,
+        league_id: team.league_id,
+        league: team.league,
+        group_name: team.group_name,
+        ranking: team.ranking,
+        participations: team.participations,
+        continental: team.continental,
+        isHost: team.isHost,
+        total_votes: totalVotes,
+      };
+    });
+
+    teamsWithVotes.sort((a, b) => b.total_votes - a.total_votes);
+
+    return successResponse(
+      res,
+      "Teams with votes fetched successfully",
+      teamsWithVotes,
+      200
+    );
+  } catch (error: any) {
+    return errorResponse(
+      res,
+      "Failed to fetch teams with votes",
+      error.message,
+      500
+    );
+  }
+}
