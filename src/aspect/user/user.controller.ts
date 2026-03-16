@@ -8,6 +8,8 @@ import {
 import { errorResponse, successResponse } from "../../lib/responseUtils";
 import { UserT } from "@/types/user.type";
 import { generateToken } from "../../lib/userUtils";
+import { UserRole } from "../../../generated/prisma";
+import prisma from "../../prisma";
 
 export async function registerUserController(
   req: Request,
@@ -189,5 +191,194 @@ export async function loginUserController(
       error.message,
       500
     );
+  }
+}
+
+/**
+ * Create User
+ */
+export async function createUserController(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    const {
+      name,
+      email,
+      password,
+      provider,
+      role,
+      avatar_url,
+      avatar_bg_color,
+      team_id,
+    } = req.body;
+
+    if (!name || !email || !provider) {
+      return errorResponse(res, "Name, email and provider are required", "", 400);
+    }
+
+    const existingUser = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (existingUser) {
+      return errorResponse(res, "User with this email already exists", "", 400);
+    }
+
+    const user = await prisma.user.create({
+      data: {
+        name,
+        email,
+        password,
+        provider,
+        role: role ?? UserRole.SEED,
+        avatar_url,
+        avatar_bg_color,
+        team_id,
+      },
+    });
+
+    return successResponse(res, "User created successfully", user, 201);
+  } catch (error: any) {
+    return errorResponse(res, "Failed to create user", error.message, 500);
+  }
+}
+
+/**
+ * Get All Users with Filters + Pagination
+ */
+export async function getUsersController(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    const {
+      role,
+      provider,
+      search,
+      page = "1",
+      limit = "10",
+    } = req.query;
+
+    const pageNumber = Number(page);
+    const limitNumber = Number(limit);
+
+    const skip = (pageNumber - 1) * limitNumber;
+
+    const where: any = {};
+
+    if (role) {
+      where.role = role;
+    }
+
+    if (provider) {
+      where.provider = provider;
+    }
+
+    if (search) {
+      where.OR = [
+        {
+          name: {
+            contains: String(search),
+            mode: "insensitive",
+          },
+        },
+        {
+          email: {
+            contains: String(search),
+            mode: "insensitive",
+          },
+        },
+      ];
+    }
+
+    const [users, total] = await Promise.all([
+      prisma.user.findMany({
+        where,
+        skip,
+        take: limitNumber,
+        include: {
+          team: true,
+        },
+        orderBy: {
+          created_at: "desc",
+        },
+      }),
+
+      prisma.user.count({
+        where,
+      }),
+    ]);
+
+    return successResponse(res, "Users fetched successfully", {
+      data: users,
+      pagination: {
+        total,
+        page: pageNumber,
+        limit: limitNumber,
+        totalPages: Math.ceil(total / limitNumber),
+      },
+    });
+  } catch (error: any) {
+    return errorResponse(res, "Failed to fetch users", error.message, 500);
+  }
+}
+
+/**
+ * Update User
+ */
+export async function updateUserController(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    const { id } = req.params;
+
+    const {
+      name,
+      role,
+      avatar_url,
+      avatar_bg_color,
+      team_id,
+    } = req.body;
+
+    const user = await prisma.user.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        name,
+        role,
+        avatar_url,
+        avatar_bg_color,
+        team_id,
+      },
+    });
+
+    return successResponse(res, "User updated successfully", user);
+  } catch (error: any) {
+    return errorResponse(res, "Failed to update user", error.message, 500);
+  }
+}
+
+/**
+ * Delete User
+ */
+export async function deleteUserController(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    const { id } = req.params;
+
+    await prisma.user.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    return successResponse(res, "User deleted successfully", null);
+  } catch (error: any) {
+    return errorResponse(res, "Failed to delete user", error.message, 500);
   }
 }

@@ -7,11 +7,19 @@ import { Request, Response } from "express";
  */
 export async function createCommentController(req: Request, res: Response) {
   try {
-    const userId = req.user?.id;
-    const matchId = Number(req.params.id);
-    const { text, parent_id } = req.body;
+    let userIdx ="";
 
-    if (!matchId || !userId || !text) {
+    // const userId = req.user?.id;
+    const matchId = Number(req.params.id);
+    const { text,userId } = req.body;
+
+    if(userId){
+      userIdx = userId.toString();
+    }else{
+      userIdx = req.user?.id;
+    }
+
+    if (!matchId || !userIdx || !text) {
       return errorResponse(
         res,
         "match_id, user_id and text are required",
@@ -23,9 +31,9 @@ export async function createCommentController(req: Request, res: Response) {
     const comment = await prisma.comment.create({
       data: {
         match_id: Number(matchId),
-        user_id: Number(userId),
+        user_id: Number(userIdx),
         text,
-        parent_id: parent_id ? Number(parent_id) : null,
+        parent_id:null
       },
       include: {
         user: true,
@@ -132,11 +140,18 @@ export async function createReplyCommentController(
   res: Response
 ) {
   try {
-    const userId = req.user?.id;
+    let userIdx = "";
+    // const userId = req.user?.id;
     const parentId = Number(req.params.parentCommentId);
-    const { match_id, text } = req.body;
+    const { match_id, text,userId } = req.body;
 
-    if (!match_id || !userId || !text) {
+    if(userId){
+      userIdx = userId.toString();
+    }else{
+      userIdx = req.user?.id;
+    }
+
+    if (!match_id || !userIdx || !text) {
       return errorResponse(
         res,
         "match_id, user_id and text are required",
@@ -148,7 +163,7 @@ export async function createReplyCommentController(
     const comment = await prisma.comment.create({
       data: {
         match_id: Number(match_id),
-        user_id: Number(userId),
+        user_id: Number(userIdx),
         text,
         parent_id: parentId,
       },
