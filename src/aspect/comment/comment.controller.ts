@@ -54,7 +54,7 @@ export async function getAllCommentsController(req: Request, res: Response) {
     const comments = await prisma.comment.findMany({
       where: {
         match_id: matchId,
-        // parent_id: null,
+        parent_id: null,
       },
       include: {
         user: true,
@@ -166,10 +166,87 @@ export async function createReplyCommentController(
 /**
  * Get Replies for a Comment
  */
+// export const getReplies = async (req: Request, res: Response) => {
+//   try {
+//     const userId = req.user?.id ?? null;
+//     const commentId = Number(req.params.commentId);
+
+//     const replies = await prisma.comment.findMany({
+//       where: {
+//         parent_id: commentId,
+//       },
+//       include: {
+//         user: true,
+//         reactions: true,
+//         _count: {
+//           select: {
+//             replies: true,
+//           },
+//         },
+//       },
+//       orderBy: {
+//         created_at: "desc",
+//       },
+//     });
+
+//     const formatted = replies.map((reply) => {
+//       const likes = reply.reactions.filter((r) => r.reaction === "LIKE").length;
+
+//       const dislikes = reply.reactions.filter(
+//         (r) => r.reaction === "DISLIKE"
+//       ).length;
+
+//       const hasUserLiked = userId
+//         ? reply.reactions.some(
+//             (r) => r.user_id === userId && r.reaction === "LIKE"
+//           )
+//         : false;
+
+//       const hasUserDisliked = userId
+//         ? reply.reactions.some(
+//             (r) => r.user_id === userId && r.reaction === "DISLIKE"
+//           )
+//         : false;
+
+//       return {
+//         id: reply.id,
+//         match_id: reply.match_id,
+//         user_id: reply.user_id,
+//         text: reply.text,
+//         user: reply.user,
+//         timestamp: reply.created_at,
+
+//         likes,
+//         dis_likes: dislikes,
+
+//         reply_count: reply._count.replies,
+
+//         is_reply: true,
+//         parent_id: reply.parent_id,
+
+//         has_user_liked: hasUserLiked,
+//         has_user_disliked: hasUserDisliked,
+//       };
+//     });
+
+//     return successResponse(res, "Replies fetched successfully", formatted);
+//   } catch (error: any) {
+//     return errorResponse(res, "Failed to fetch replies", error.message, 500);
+//   }
+// };
+
+/**
+ * Get Replies for a Comment
+ */
 export const getReplies = async (req: Request, res: Response) => {
   try {
     const userId = req.user?.id ?? null;
     const commentId = Number(req.params.commentId);
+
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 5;
+
+    const skip = (page - 1) * limit;
 
     const replies = await prisma.comment.findMany({
       where: {
@@ -180,13 +257,15 @@ export const getReplies = async (req: Request, res: Response) => {
         reactions: true,
         _count: {
           select: {
-            replies: true,
+            replies: true,    
           },
         },
       },
       orderBy: {
         created_at: "desc",
       },
+      skip,
+      take: limit,
     });
 
     const formatted = replies.map((reply) => {
@@ -229,32 +308,29 @@ export const getReplies = async (req: Request, res: Response) => {
       };
     });
 
-    return successResponse(res, "Replies fetched successfully", formatted);
+    const total = await prisma.comment.count({
+      where: {
+        parent_id: commentId,
+      },
+    });
+
+    return successResponse(res, "Replies fetched successfully", {
+      data: formatted,
+      pagination: {
+        page,
+        limit,
+        total,
+        total_pages: Math.ceil(total / limit),
+      },
+    });
   } catch (error: any) {
     return errorResponse(res, "Failed to fetch replies", error.message, 500);
   }
 };
-// export const getReplies = async (req: Request, res: Response) => {
-//   const commentId = Number(req.params.commentId);
 
-//   const replies = await prisma.comment.findMany({
-//     where: {
-//       parent_id: commentId
-//     },
-//     include: {
-//       user: true
-//     },
-//     orderBy: {
-//       created_at: "desc"
-//     }
-//   });
-
-//   res.json({
-//     success: true,
-//     data: replies
-//   });
-// };
-
+/**
+ * Add Reaction to Comment
+ */
 export const addReaction = async (req: Request, res: Response) => {
   const userId = req.user?.id;
   const commentId = Number(req.params.commentId);
