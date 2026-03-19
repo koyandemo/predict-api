@@ -2,9 +2,9 @@ export interface UserT {
   id: number;
   name: string;
   email: string;
-  provider: "email"|"google"|string;
+  provider: "email" | "google" | string;
   password?: string;
-  role: "ADMIN" | "USER" |"SEED";
+  role: "ADMIN" | "USER" | "SEED";
   avatar_url?: string | "";
   avatar_bg_color?: string | "";
   created_at: Date;
@@ -19,3 +19,16 @@ export interface AuthUserResponseT {
   user?: Omit<UserT, "password">;
   error?: string;
 }
+
+export const PrismaUserSelect = {
+  id: true,
+  name: true,
+  email: true,
+  provider: true,
+  role: true,
+  avatar_url: true,
+  avatar_bg_color: true,
+  created_at: true,
+  updated_at: true,
+  team_id: true,
+};

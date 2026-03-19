@@ -5,7 +5,11 @@ import {
   hashPassword,
 } from "../../lib/userUtils";
 import prisma from "../../prisma";
-import { AuthUserResponseT, UserT } from "@/types/user.type";
+import {
+  AuthUserResponseT,
+  PrismaUserSelect,
+  UserT,
+} from "../../types/user.type";
 
 export async function registerUserService(
   userData: Omit<UserT, "id" | "created_at" | "updated_at">
@@ -49,17 +53,16 @@ export async function registerUserService(
         team_id: userData.team_id,
         password: hashedPassword,
       },
+      select: PrismaUserSelect,
     });
 
-    const { password, ...userWithoutPassword } = newUser;
-
-    const token = generateToken(userWithoutPassword as UserT);
+    const token = generateToken(newUser as UserT);
 
     return {
       success: true,
       message: "User registered successfully",
       token,
-      user: userWithoutPassword as UserT,
+      user: newUser as UserT,
     };
   } catch (error: any) {
     return {
@@ -102,14 +105,13 @@ export async function updateUserService(
           team_id: userData.team_id,
         }),
       },
+      select: PrismaUserSelect,
     });
-
-    const { password, ...userWithoutPassword } = updatedUser;
 
     return {
       success: true,
       message: "User updated successfully",
-      user: userWithoutPassword,
+      user: updatedUser as UserT,
     };
   } catch (error: any) {
     return {
@@ -136,26 +138,11 @@ export async function registerWithProviderService({
     throw new Error("Provider account ID mismatch");
   }
 
-  const now = new Date();
-
   let user = await prisma.user.findUnique({
     where: { email },
   });
 
   if (user) {
-    // const isSameProvider = user.provider === provider;
-
-    // const updatedUser = await prisma.user.update({
-    //   where: { email },
-    //   data: {
-    //     name,
-    //     provider,
-    //     avatar_url: profile ?? "",
-    //     updated_at: now,
-    //     ...(isSameProvider ? {} : { password: null }),
-    //   },
-    // });
-
     return {
       user: user as UserT,
       isNewUser: false,
@@ -170,6 +157,7 @@ export async function registerWithProviderService({
       avatar_url: profile ?? "",
       role: "USER",
     },
+    select: PrismaUserSelect,
   });
 
   return {
@@ -234,4 +222,3 @@ export async function loginUserService(
     };
   }
 }
-

@@ -6,7 +6,7 @@ import {
   updateUserService,
 } from "./user.service";
 import { errorResponse, successResponse } from "../../lib/responseUtils";
-import { UserT } from "@/types/user.type";
+import { PrismaUserSelect, UserT } from "../../types/user.type";
 import { generateToken } from "../../lib/userUtils";
 import { UserRole } from "../../../generated/prisma";
 import prisma from "../../prisma";
@@ -214,7 +214,12 @@ export async function createUserController(
     } = req.body;
 
     if (!name || !email || !provider) {
-      return errorResponse(res, "Name, email and provider are required", "", 400);
+      return errorResponse(
+        res,
+        "Name, email and provider are required",
+        "",
+        400
+      );
     }
 
     const existingUser = await prisma.user.findUnique({
@@ -236,6 +241,7 @@ export async function createUserController(
         avatar_bg_color,
         team_id,
       },
+      select: PrismaUserSelect,
     });
 
     return successResponse(res, "User created successfully", user, 201);
@@ -252,13 +258,7 @@ export async function getUsersController(
   res: Response
 ): Promise<Response> {
   try {
-    const {
-      role,
-      provider,
-      search,
-      page = "1",
-      limit = "10",
-    } = req.query;
+    const { role, provider, search, page = "1", limit = "10" } = req.query;
 
     const pageNumber = Number(page);
     const limitNumber = Number(limit);
@@ -295,11 +295,12 @@ export async function getUsersController(
     const [users, total] = await Promise.all([
       prisma.user.findMany({
         where,
-        skip,
-        take: limitNumber,
-        include: {
+        select: {
+          ...PrismaUserSelect,
           team: true,
         },
+        skip,
+        take: limitNumber,
         orderBy: {
           created_at: "desc",
         },
@@ -334,13 +335,7 @@ export async function updateUserController(
   try {
     const { id } = req.params;
 
-    const {
-      name,
-      role,
-      avatar_url,
-      avatar_bg_color,
-      team_id,
-    } = req.body;
+    const { name, role, avatar_url, avatar_bg_color, team_id } = req.body;
 
     const user = await prisma.user.update({
       where: {
@@ -353,6 +348,7 @@ export async function updateUserController(
         avatar_bg_color,
         team_id,
       },
+      select: PrismaUserSelect,
     });
 
     return successResponse(res, "User updated successfully", user);
