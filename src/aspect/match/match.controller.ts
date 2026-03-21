@@ -74,7 +74,7 @@ export async function createMatchController(
         home_team_id,
         away_team_id,
         league_id,
-        season_id
+        season_id,
       },
     });
 
@@ -114,11 +114,11 @@ export async function getMatchesController(
       where.league_id = Number(league_id);
     }
 
-    if(season_id){
+    if (season_id) {
       where.season_id = Number(season_id);
     }
-    
-     if(gameweek_id){
+
+    if (gameweek_id) {
       where.gameweek_id = Number(gameweek_id);
     }
 
@@ -130,8 +130,8 @@ export async function getMatchesController(
       where.type = type;
     }
 
-    if(group_name){
-      where.group_name = group_name
+    if (group_name) {
+      where.group_name = group_name;
     }
 
     if (published) {
@@ -189,12 +189,13 @@ export async function getMatchesController(
 
     const matches = await prisma.match.findMany({
       where,
+     
       include: {
         home_team: true,
         away_team: true,
         league: true,
-        gameweek: true,
-        season: true,
+        // gameweek: true,
+        // season: true,
       },
       orderBy: {
         kickoff: "asc",
@@ -204,6 +205,8 @@ export async function getMatchesController(
     });
 
     const total = await prisma.match.count({ where });
+
+    console.log("Fetched matches:", matches);
 
     return successResponse(res, "Matches fetched successfully", {
       data: matches,
@@ -233,6 +236,7 @@ export async function getMatchBySlugController(
 
     const match = await prisma.match.findFirst({
       where: isId ? { id: Number(slug) } : { slug: slug as string },
+
       include: {
         home_team: true,
         away_team: true,

@@ -14,6 +14,7 @@
     "seed:league": "tsx prisma/seed.league.ts",
     "seed:leagueSeason": "tsx prisma/seed.leagueSeason.ts",
     "seed:team": "tsx prisma/seed.team.ts",
+    "seed:teamStanding": "tsx prisma/seed.teamStanding.ts",
     "seed:worldcup": "tsx prisma/seed.worldCup.ts",
     "seed:worldcup:teams": "tsx prisma/seed.worldCupTeams.ts",
     "seed:worldcup:season": "tsx prisma/seed.worldCupSeason.ts",

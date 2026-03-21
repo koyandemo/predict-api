@@ -145,6 +145,35 @@ model Team {
   //for Team Winner for League Season base on user+admin vote
   winner_votes       WinnerVote[]
   admin_winner_votes AdminWinnerVote[]
+  standings TeamStanding[]
+}
+
+//////////////////////
+// TEAM STADNING
+//////////////////////
+
+model TeamStanding {
+  id Int @id @default(autoincrement())
+
+  team_id Int
+  team    Team @relation(fields: [team_id], references: [id])
+
+  league_season_id Int
+  league_season    LeagueSeason @relation(fields: [league_season_id], references: [id])
+
+  played          Int @default(0)
+  won             Int @default(0)
+  drawn           Int @default(0)
+  lost            Int @default(0)
+  goals_for       Int @default(0)
+  goals_against   Int @default(0)
+  goal_difference Int @default(0)
+  points          Int @default(0)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([team_id, league_season_id])
 }
 
 //////////////////////
@@ -238,6 +267,7 @@ model LeagueSeason {
   created_at         DateTime          @default(now())
   winner_votes       WinnerVote[]
   admin_winner_votes AdminWinnerVote[]
+  team_standings TeamStanding[]
 
   @@unique([league_id, season_id])
 }

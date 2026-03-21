@@ -266,3 +266,77 @@ export async function getTeamsByVoteController(
     );
   }
 }
+
+export async function getFifaWorldCupTeamStandingController(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    
+    const { league_season_id } = req.query;
+
+    const standings = await prisma.teamStanding.findMany({
+      where: {
+        league_season_id: Number(league_season_id),
+      },
+      include: {
+        team: {
+          select: {
+            id: true,
+            name: true,
+            logo_url: true,
+            short_code: true,
+            group_name: true,
+          },
+        },
+      },
+      orderBy: [
+        { points: "desc" },
+        { goal_difference: "desc" },
+        { goals_for: "desc" },
+      ],
+    });
+
+    // 🧠 Group by group_name (A, B, C...)
+    const grouped: Record<string, any[]> = {};
+
+    for (const item of standings) {
+      const group = item.team.group_name || "UNKNOWN";
+
+      if (!grouped[group]) {
+        grouped[group] = [];
+      }
+
+      grouped[group].push({
+        team: {
+          id: item.team.id,
+          name: item.team.name,
+          logo_url: item.team.logo_url,
+          short_code: item.team.short_code,
+        },
+        played: item.played,
+        won: item.won,
+        drawn: item.drawn,
+        lost: item.lost,
+        goalsFor: item.goals_for,
+        goalsAgainst: item.goals_against,
+        goalDifference: item.goal_difference,
+        points: item.points,
+      });
+    }
+
+    return successResponse(
+      res,
+      "Fetched team standings successfully",
+      grouped,
+      200
+    );
+  } catch (error: any) {
+    return errorResponse(
+      res,
+      "Failed to fetch team standings",
+      error.message,
+      500
+    );
+  }
+}
