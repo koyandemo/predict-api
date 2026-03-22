@@ -282,7 +282,7 @@ export const createAdminWinnerVoteController = async (req: Request, res: Respons
         league_season_id,
         team_id,
         user_id,
-        vote_count,
+        vote_count : parseInt(vote_count as any) || 0,
       },
       include: {
         team: true,
