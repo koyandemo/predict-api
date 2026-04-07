@@ -206,8 +206,6 @@ export async function getMatchesController(
 
     const total = await prisma.match.count({ where });
 
-    console.log("Fetched matches:", matches);
-
     return successResponse(res, "Matches fetched successfully", {
       data: matches,
       pagination: {

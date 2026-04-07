@@ -72,7 +72,6 @@ export async function getLeaguesController(
         sort_order: "asc",
       },
     });
-    console.log("Fetched leagues:", leagues);
     return successResponse(res, "Leagues fetched successfully", leagues, 200);
   } catch (error: any) {
     return errorResponse(res, "Failed to fetch leagues", error.message, 500);
