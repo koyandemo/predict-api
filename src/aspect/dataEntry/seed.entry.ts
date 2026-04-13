@@ -32,7 +32,7 @@ async function seedPremierLeague() {
         published: match.published,
 
         scoreOptions: {
-          create: match.scoreOptions.map((option) => ({
+          create: match.scoreOptions.map((option:any) => ({
             home_score: option.home_score,
             away_score: option.away_score,
 
