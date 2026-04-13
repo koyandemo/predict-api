@@ -139,7 +139,6 @@ const groupStageMatches = [
   },
 ];
 
-
 async function main() {
   try {
     const league = await prisma.league.findUnique({
@@ -185,13 +184,17 @@ async function main() {
         },
       });
 
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(0, 0, 0, 0);
+
       await prisma.match.upsert({
         where: {
           slug: `${match.home}-vs-${match.away}-${match.date}`,
         },
         update: {},
         create: {
-          kickoff: new Date(match.date),
+          kickoff: tomorrow,
           timezone: "UTC",
           venue: "TBD",
           slug: `${match.home}-vs-${match.away}-${match.date}`,
@@ -211,7 +214,7 @@ async function main() {
       });
     }
 
-    console.log("✅ Group stage matches created successfully")
+    console.log("✅ Group stage matches created successfully");
 
     // Create knockout matches
     // for (const match of knockoutMatches) {
@@ -262,7 +265,6 @@ async function main() {
 }
 
 main();
-
 
 // Knockout stage placeholder matches
 const knockoutMatches = [

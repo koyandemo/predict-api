@@ -1,14 +1,13 @@
 import prisma from "../src/prisma";
+import { WORLD_CUP_LEAGUE_ID } from "./utils";
 
 
 async function seedTeamStanding() {
   try {
-    const LEAGUE_ID = 16;
-
     // 1. Get league season (adjust if multiple seasons exist)
     const leagueSeason = await prisma.leagueSeason.findFirst({
       where: {
-        league_id: LEAGUE_ID,
+        league_id: WORLD_CUP_LEAGUE_ID,
       },
       orderBy: {
         created_at: "desc", // latest season
@@ -22,7 +21,7 @@ async function seedTeamStanding() {
     // 2. Get all teams in this league
     const teams = await prisma.team.findMany({
       where: {
-        league_id: LEAGUE_ID,
+        league_id: WORLD_CUP_LEAGUE_ID,
       },
       select: {
         id: true,

@@ -16,11 +16,14 @@
     "seed:team": "tsx prisma/seed.team.ts",
     "seed:teamStanding": "tsx prisma/seed.teamStanding.ts",
     "seed:worldcup": "tsx prisma/seed.worldCup.ts",
+    "seed:worldcup:league": "tsx prisma/seed.worldCupLeague.ts",
     "seed:worldcup:teams": "tsx prisma/seed.worldCupTeams.ts",
     "seed:worldcup:season": "tsx prisma/seed.worldCupSeason.ts",
     "seed:worldcup:leagueSeason": "tsx prisma/seed.worldCupLeagueSeason.ts",
     "seed:worldcup:gameweeks": "tsx prisma/seed.worldCupGameWeeks.ts",
-    "seed:worldcup:matches": "tsx prisma/seed.worldCupMatches.ts"
+    "seed:worldcup:matches": "tsx prisma/seed.worldCupMatches.ts",
+    "seed:userSeed": "tsx prisma/seed.userSeed.ts",
+    "seed:init": "tsx prisma/seed.init.ts"
   },
   "keywords": [],
   "author": "",

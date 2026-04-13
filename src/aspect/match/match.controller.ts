@@ -87,6 +87,139 @@ export async function createMatchController(
 /**
  * Get All Matches
  */
+// export async function getMatchesController(
+//   req: Request,
+//   res: Response
+// ): Promise<Response<{ data: MatchT[]; pagination: PaginationT }>> {
+//   try {
+//     const {
+//       league_id,
+//       status,
+//       type,
+//       published,
+//       team,
+//       from,
+//       season_id,
+//       gameweek_id,
+//       group_name,
+//       to,
+//       search,
+//       page = "1",
+//       limit = "100",
+//     } = req.query;
+
+//     const where: any = {};
+
+//     if (league_id) {
+//       where.league_id = Number(league_id);
+//     }
+
+//     if (season_id) {
+//       where.season_id = Number(season_id);
+//     }
+
+//     if (gameweek_id) {
+//       where.gameweek_id = Number(gameweek_id);
+//     }
+
+//     if (status) {
+//       where.status = status;
+//     }
+
+//     if (type) {
+//       where.type = type;
+//     }
+
+//     if (group_name) {
+//       where.group_name = group_name;
+//     }
+
+//     if (published) {
+//       where.published = published === "true";
+//     }
+
+//     if (team) {
+//       where.OR = [
+//         { home_team_id: Number(team) },
+//         { away_team_id: Number(team) },
+//       ];
+//     }
+
+//     if (from || to) {
+//       where.kickoff = {};
+
+//       if (from) {
+//         where.kickoff.gte = new Date(from as string);
+//       }
+
+//       if (to) {
+//         where.kickoff.lte = new Date(to as string);
+//       }
+//     }
+
+//     if (search) {
+//       where.OR = [
+//         {
+//           home_team: {
+//             name: {
+//               contains: search as string,
+//               mode: "insensitive",
+//             },
+//           },
+//         },
+//         {
+//           away_team: {
+//             name: {
+//               contains: search as string,
+//               mode: "insensitive",
+//             },
+//           },
+//         },
+//         {
+//           venue: {
+//             contains: search as string,
+//             mode: "insensitive",
+//           },
+//         },
+//       ];
+//     }
+
+//     const pageNumber = Number(page);
+//     const limitNumber = Number(limit);
+
+//     const matches = await prisma.match.findMany({
+//     where,
+
+//       include: {
+//         home_team: true,
+//         away_team: true,
+//         league: true,
+//         // gameweek: true,
+//         // season: true,
+//       },
+//       orderBy: {
+//         kickoff: "asc",
+//       },
+//       skip: (pageNumber - 1) * limitNumber,
+//       take: limitNumber,
+//     });
+
+//     const total = await prisma.match.count({ where });
+
+//     return successResponse(res, "Matches fetched successfully", {
+//       data: matches,
+//       pagination: {
+//         page: pageNumber,
+//         limit: limitNumber,
+//         total,
+//         total_pages: Math.ceil(total / limitNumber),
+//       },
+//     });
+//   } catch (error: any) {
+//     return errorResponse(res, "Failed to fetch matches", error.message, 500);
+//   }
+// }
+
 export async function getMatchesController(
   req: Request,
   res: Response
@@ -107,6 +240,19 @@ export async function getMatchesController(
       page = "1",
       limit = "100",
     } = req.query;
+
+    // ─── Auto-finish stale matches (kickoff > 180 minutes ago) ───────────────
+    const nowUTC = new Date();
+    const cutoffTime = new Date(nowUTC.getTime() - 180 * 60 * 1000);
+
+    await prisma.match.updateMany({
+      where: {
+        status: { notIn: ["FINISHED", "POSTPONED"] },
+        kickoff: { lte: cutoffTime },
+      },
+      data: { status: "FINISHED" },
+    });
+    // ─────────────────────────────────────────────────────────────────────────
 
     const where: any = {};
 
@@ -189,13 +335,10 @@ export async function getMatchesController(
 
     const matches = await prisma.match.findMany({
       where,
-     
       include: {
         home_team: true,
         away_team: true,
         league: true,
-        // gameweek: true,
-        // season: true,
       },
       orderBy: {
         kickoff: "asc",

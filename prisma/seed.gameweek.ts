@@ -6,7 +6,7 @@ async function seedGameWeeks() {
   const seasons = await prisma.season.findMany();
 
   for (const season of seasons) {
-    const gameweeks = Array.from({ length: 40 }, (_, i) => ({
+    const gameweeks = Array.from({ length: 6 }, (_, i) => ({
       number: i + 1,
       season_id: season.id,
     }));
