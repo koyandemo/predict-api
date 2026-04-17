@@ -1,0 +1,126 @@
+// Knockout stage placeholder matches
+const knockoutMatches = [
+  // Round of 16 (8 matches - top 2 from each group + best third-placed teams)
+  {
+    type: "ROUND_OF_16",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 4,
+    date: "2026-06-27T18:00:00Z",
+  },
+  {
+    type: "ROUND_OF_16",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 4,
+    date: "2026-06-27T21:00:00Z",
+  },
+  {
+    type: "ROUND_OF_16",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 4,
+    date: "2026-06-28T18:00:00Z",
+  },
+  {
+    type: "ROUND_OF_16",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 4,
+    date: "2026-06-28T21:00:00Z",
+  },
+  {
+    type: "ROUND_OF_16",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 4,
+    date: "2026-06-29T18:00:00Z",
+  },
+  {
+    type: "ROUND_OF_16",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 4,
+    date: "2026-06-29T21:00:00Z",
+  },
+  {
+    type: "ROUND_OF_16",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 4,
+    date: "2026-06-30T18:00:00Z",
+  },
+  {
+    type: "ROUND_OF_16",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 4,
+    date: "2026-06-30T21:00:00Z",
+  },
+
+  // Quarter-finals
+  {
+    type: "QUARTERFINAL",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 5,
+    date: "2026-07-04T18:00:00Z",
+  },
+  {
+    type: "QUARTERFINAL",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 5,
+    date: "2026-07-04T21:00:00Z",
+  },
+  {
+    type: "QUARTERFINAL",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 5,
+    date: "2026-07-05T18:00:00Z",
+  },
+  {
+    type: "QUARTERFINAL",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 5,
+    date: "2026-07-05T21:00:00Z",
+  },
+
+  // Semi-finals
+  {
+    type: "SEMIFINAL",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 6,
+    date: "2026-07-09T18:00:00Z",
+  },
+  {
+    type: "SEMIFINAL",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 6,
+    date: "2026-07-09T21:00:00Z",
+  },
+
+  // Third Place Playoff
+  {
+    type: "THIRD_PLACE_PLAYOFF",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 7,
+    date: "2026-07-13T18:00:00Z",
+    allow_draw: false,
+  },
+
+  // Final
+  {
+    type: "FINAL",
+    home: "TBD",
+    away: "TBD",
+    gameweek: 8,
+    date: "2026-07-14T18:00:00Z",
+    allow_draw: false,
+  },
+];

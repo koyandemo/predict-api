@@ -20,7 +20,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/ARG",
     "group_name": "J",
-    "ranking": 2,
+    "ranking": 3,
     "participations": 18,
     "continental": "CONMEBOL",
     "isHost": false
@@ -65,6 +65,19 @@
     "isHost": false
   },
   {
+    "name": "Bosnia Herzegovina",
+    "slug": "bosnia-herzegovina",
+    "short_code": "BEL",
+    "country": "Bosnia Herzegovina",
+    "type": "national",
+    "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/BIH",
+    "group_name": "B",
+    "ranking": 65,
+    "participations": 1,
+    "continental": "UEFA",
+    "isHost": false
+  },
+  {
     "name": "Brazil",
     "slug": "brazil",
     "short_code": "BRA",
@@ -72,7 +85,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/BRA",
     "group_name": "C",
-    "ranking": 5,
+    "ranking": 6,
     "participations": 22,
     "continental": "CONMEBOL",
     "isHost": false
@@ -85,20 +98,20 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/CAN",
     "group_name": "B",
-    "ranking": 29,
+    "ranking": 30,
     "participations": 2,
     "continental": "CONCACAF",
     "isHost": true
   },
   {
-    "name": "Cabo Verde",
-    "slug": "cabo-verde",
+    "name": "Cape Verde",
+    "slug": "cape-verde",
     "short_code": "CPV",
     "country": "Cabo Verde",
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/CPV",
     "group_name": "H",
-    "ranking": 67,
+    "ranking": 69,
     "participations": 0,
     "continental": "CAF",
     "isHost": false
@@ -111,9 +124,35 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/COL",
     "group_name": "K",
-    "ranking": 14,
+    "ranking": 13,
     "participations": 6,
     "continental": "CONMEBOL",
+    "isHost": false
+  },
+  {
+    "name": "Congo DR",
+    "slug": "congo-dr",
+    "short_code": "COD",
+    "country": "Congo DR",
+    "type": "national",
+    "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/COD",
+    "group_name": "K",
+    "ranking": 46,
+    "participations": 0,
+    "continental": "CAF",
+    "isHost": false
+  },
+  {
+    "name": "Ivory Coast",
+    "slug": "ivory-coast",
+    "short_code": "CIV",
+    "country": "Côte d'Ivoire",
+    "type": "national",
+    "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/CIV",
+    "group_name": "E",
+    "ranking": 34,
+    "participations": 3,
+    "continental": "CAF",
     "isHost": false
   },
   {
@@ -137,22 +176,22 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/CUW",
     "group_name": "E",
-    "ranking": 81,
+    "ranking": 82,
     "participations": 0,
     "continental": "CONCACAF",
     "isHost": false
   },
   {
-    "name": "Côte d'Ivoire",
-    "slug": "cote-divoire",
-    "short_code": "CIV",
-    "country": "Côte d'Ivoire",
+    "name": "Czechia",
+    "slug": "czechia",
+    "short_code": "CZE",
+    "country": "Czechia",
     "type": "national",
-    "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/CIV",
-    "group_name": "E",
-    "ranking": 37,
-    "participations": 3,
-    "continental": "CAF",
+    "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/CZE",
+    "group_name": "A",
+    "ranking": 41,
+    "participations": 1,
+    "continental": "UEFA",
     "isHost": false
   },
   {
@@ -176,7 +215,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/EGY",
     "group_name": "G",
-    "ranking": 31,
+    "ranking": 29,
     "participations": 3,
     "continental": "CAF",
     "isHost": false
@@ -202,7 +241,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/FRA",
     "group_name": "I",
-    "ranking": 3,
+    "ranking": 1,
     "participations": 16,
     "continental": "UEFA",
     "isHost": false
@@ -228,7 +267,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/GHA",
     "group_name": "L",
-    "ranking": 72,
+    "ranking": 74,
     "participations": 4,
     "continental": "CAF",
     "isHost": false
@@ -254,8 +293,21 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/IRN",
     "group_name": "G",
-    "ranking": 20,
+    "ranking": 21,
     "participations": 6,
+    "continental": "AFC",
+    "isHost": false
+  },
+  {
+    "name": "Iraq",
+    "slug": "Iraq",
+    "short_code": "IRQ",
+    "country": "Iraq",
+    "type": "national",
+    "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/IRQ",
+    "group_name": "I",
+    "ranking": 57,
+    "participations": 1,
     "continental": "AFC",
     "isHost": false
   },
@@ -267,7 +319,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/JPN",
     "group_name": "F",
-    "ranking": 19,
+    "ranking": 18,
     "participations": 7,
     "continental": "AFC",
     "isHost": false
@@ -280,7 +332,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/JOR",
     "group_name": "J",
-    "ranking": 64,
+    "ranking": 63,
     "participations": 0,
     "continental": "AFC",
     "isHost": false
@@ -293,7 +345,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/MEX",
     "group_name": "A",
-    "ranking": 16,
+    "ranking": 15,
     "participations": 17,
     "continental": "CONCACAF",
     "isHost": true
@@ -307,7 +359,7 @@
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/MAR",
     "group_name": "C",
     "ranking": 8,
-    "participations": 8,
+    "participations": 6,
     "continental": "CAF",
     "isHost": false
   },
@@ -345,7 +397,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/NOR",
     "group_name": "I",
-    "ranking": 32,
+    "ranking": 31,
     "participations": 3,
     "continental": "UEFA",
     "isHost": false
@@ -384,7 +436,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/POR",
     "group_name": "K",
-    "ranking": 6,
+    "ranking": 5,
     "participations": 8,
     "continental": "UEFA",
     "isHost": false
@@ -397,7 +449,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/QAT",
     "group_name": "B",
-    "ranking": 56,
+    "ranking": 55,
     "participations": 1,
     "continental": "AFC",
     "isHost": false
@@ -423,7 +475,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/SCO",
     "group_name": "C",
-    "ranking": 38,
+    "ranking": 43,
     "participations": 7,
     "continental": "UEFA",
     "isHost": false
@@ -436,7 +488,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/SEN",
     "group_name": "I",
-    "ranking": 12,
+    "ranking": 14,
     "participations": 3,
     "continental": "CAF",
     "isHost": false
@@ -455,14 +507,14 @@
     "isHost": false
   },
   {
-    "name": "Korea Republic",
+    "name": "South Korea",
     "slug": "korea-republic",
     "short_code": "KOR",
     "country": "Korea Republic",
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/KOR",
     "group_name": "A",
-    "ranking": 22,
+    "ranking": 25,
     "participations": 10,
     "continental": "AFC",
     "isHost": false
@@ -475,8 +527,21 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/ESP",
     "group_name": "H",
-    "ranking": 1,
+    "ranking": 2,
     "participations": 16,
+    "continental": "UEFA",
+    "isHost": false
+  },
+  {
+    "name": "Sweden",
+    "slug": "Sweden",
+    "short_code": "ESP",
+    "country": "Sweden",
+    "type": "national",
+    "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/SWE",
+    "group_name": "F",
+    "ranking":38,
+    "participations": 12,
     "continental": "UEFA",
     "isHost": false
   },
@@ -488,7 +553,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/SUI",
     "group_name": "B",
-    "ranking": 18,
+    "ranking": 19,
     "participations": 12,
     "continental": "UEFA",
     "isHost": false
@@ -501,7 +566,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/TUN",
     "group_name": "F",
-    "ranking": 47,
+    "ranking": 44,
     "participations": 6,
     "continental": "CAF",
     "isHost": false
@@ -514,9 +579,22 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/USA",
     "group_name": "D",
-    "ranking": 15,
+    "ranking": 16,
     "participations": 11,
     "continental": "CONCACAF",
+    "isHost": true
+  },
+  {
+    "name": "Turkiye",
+    "slug": "turkiye",
+    "short_code": "TUR",
+    "country": "Turkiye",
+    "type": "national",
+    "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/TUR",
+    "group_name": "D",
+    "ranking": 22,
+    "participations": 2,
+    "continental": "UEFA",
     "isHost": true
   },
   {
@@ -540,7 +618,7 @@
     "type": "national",
     "logo_url": "https://api.fifa.com/api/v3/picture/flags-sq-4/UZB",
     "group_name": "K",
-    "ranking": 52,
+    "ranking": 50,
     "participations": 0,
     "continental": "AFC",
     "isHost": false
