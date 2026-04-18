@@ -10,6 +10,7 @@ import {
   ScorePredictionT,
 } from "../../types/match.type";
 import { PaginationT } from "@/types/index.type";
+import { MATCH_DURATION_MINUTES } from "@/lib/utils";
 
 /**
  * Create Match
@@ -243,7 +244,7 @@ export async function getMatchesController(
 
     // ─── Auto-finish stale matches (kickoff > 180 minutes ago) ───────────────
     const nowUTC = new Date();
-    const cutoffTime = new Date(nowUTC.getTime() - 180 * 60 * 1000);
+    const cutoffTime = new Date(nowUTC.getTime() - MATCH_DURATION_MINUTES);
 
     await prisma.match.updateMany({
       where: {
