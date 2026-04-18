@@ -1,0 +1,32 @@
+[
+    {
+      "home": "Germany",
+      "away": "Spain",
+      "gameweek": 5,
+      "date": "2026-07-04T18:00:00Z",
+      "group_name": "E",
+      "type": "ROUND_OF_16",
+      "venue": "Philadelphia Stadium",
+      "big_match": true
+    },
+    {
+      "home": "Brazil",
+      "away": "Japan",
+      "gameweek": 5,
+      "date": "2026-07-05T19:00:00Z",
+      "group_name": "C",
+      "type": "ROUND_OF_16",
+      "venue": "Miami Stadium",
+      "big_match": false
+    },
+    {
+      "home": "England",
+      "away": "South Korea",
+      "gameweek": 5,
+      "date": "2026-07-07T21:00:00Z",
+      "group_name": "B",
+      "type": "ROUND_OF_16",
+      "venue": "Vancouver Stadium",
+      "big_match": false
+    }
+  ]

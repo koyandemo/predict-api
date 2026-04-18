@@ -1,0 +1,22 @@
+[
+    {
+      "home": "Brazil",
+      "away": "Argentina",
+      "gameweek": 7,
+      "date": "2026-07-14T22:00:00Z",
+      "group_name": "C",
+      "type": "SEMIFINAL",
+      "venue": "Dallas Stadium",
+      "big_match": true
+    },
+    {
+      "home": "Germany",
+      "away": "France",
+      "gameweek": 7,
+      "date": "2026-07-15T22:00:00Z",
+      "group_name": "E",
+      "type": "SEMIFINAL",
+      "venue": "Atlanta Stadium",
+      "big_match": true
+    }
+  ]

@@ -1,5 +1,11 @@
+import { MatchType } from "../generated/prisma";
 import prisma from "../src/prisma";
 import groupStates from "./data/match/fifa-world-cup/groupState.json";
+import roundOf32 from "./data/match/fifa-world-cup/round_of_32.json";
+import roundOf16 from "./data/match/fifa-world-cup/round_of_16.json";
+import quarterFinal from "./data/match/fifa-world-cup/quarter_final.json";
+import semiFinal from "./data/match/fifa-world-cup/semi_final.json";
+import final from "./data/match/fifa-world-cup/final.json";
 
 const LEAGUE_SLUG = "fifa-world-cup-2026";
 const SEASON_NAME = "FIFA World Cup 2026 Season";
@@ -31,7 +37,7 @@ async function main() {
     const teamMap = new Map(teams.map((t) => [t.name, t]));
 
     // Create group stage matches
-    for (const match of groupStates) {
+    for (const match of roundOf32) {
       const homeTeam = teamMap.get(match.home);
       const awayTeam = teamMap.get(match.away);
 
@@ -66,7 +72,7 @@ async function main() {
           venue:match.venue,
           slug: `${match.home}-vs-${match.away}-${match.date}`,
           status: "SCHEDULED",
-          type: "GROUP_STAGE",
+          type:match.type as MatchType,
           group_name: match.group_name,
           allow_draw: true,
           big_match: false,

@@ -1,0 +1,32 @@
+[
+    {
+      "home": "France",
+      "away": "Portugal",
+      "gameweek": 6,
+      "date": "2026-07-09T20:00:00Z",
+      "group_name": "I",
+      "type": "QUARTERFINAL",
+      "venue": "Boston Stadium",
+      "big_match": true
+    },
+    {
+      "home": "Netherlands",
+      "away": "Uruguay",
+      "gameweek": 6,
+      "date": "2026-07-10T17:00:00Z",
+      "group_name": "G",
+      "type": "QUARTERFINAL",
+      "venue": "Kansas City Stadium",
+      "big_match": true
+    },
+    {
+      "home": "Argentina",
+      "away": "Belgium",
+      "gameweek": 6,
+      "date": "2026-07-11T21:00:00Z",
+      "group_name": "K",
+      "type": "QUARTERFINAL",
+      "venue": "Los Angeles Stadium",
+      "big_match": true
+    }
+  ]
