@@ -10,7 +10,7 @@ import {
   ScorePredictionT,
 } from "../../types/match.type";
 import { PaginationT } from "@/types/index.type";
-import { MATCH_DURATION_MINUTES } from "@/lib/utils";
+import { MATCH_DURATION_MINUTES } from "../../lib/utils";
 
 /**
  * Create Match

@@ -78,9 +78,9 @@ model User {
   adminMatchVotes       AdminMatchVote[]
   adminScorePredictions AdminScorePrediction[]
 
-   //for Team Winner for League Season base on user+admin vote
-  winnerVotes           WinnerVote[]
-  adminWinnerVotes      AdminWinnerVote[]
+  //for Team Winner for League Season base on user+admin vote
+  winnerVotes      WinnerVote[]
+  adminWinnerVotes AdminWinnerVote[]
 }
 
 //////////////////////
@@ -145,7 +145,7 @@ model Team {
   //for Team Winner for League Season base on user+admin vote
   winner_votes       WinnerVote[]
   admin_winner_votes AdminWinnerVote[]
-  standings TeamStanding[]
+  standings          TeamStanding[]
 }
 
 //////////////////////
@@ -267,7 +267,7 @@ model LeagueSeason {
   created_at         DateTime          @default(now())
   winner_votes       WinnerVote[]
   admin_winner_votes AdminWinnerVote[]
-  team_standings TeamStanding[]
+  team_standings     TeamStanding[]
 
   @@unique([league_id, season_id])
 }
@@ -492,4 +492,13 @@ model CommentReaction {
   updated_at DateTime @updatedAt
 
   @@unique([comment_id, user_id])
+}
+
+model Contact {
+  id      Int    @id @default(autoincrement())
+  title   String
+  email   String
+  message String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

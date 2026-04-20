@@ -31,7 +31,7 @@
       "@lib/*": ["lib/*"]
     }
   },
-  "include": ["src/**/*", "types/**/*", "lib/**/*"],
+  "include": ["src/**/*", "types/**/*", "lib/**/*", "../predict-dashboard/src/types/contact.type.ts"],
   "typeRoots": ["node_modules/@types", "./src/types"],
   "exclude": ["node_modules", "dist"],
   "files": ["src/types/express.d.ts"]
