@@ -1,11 +1,11 @@
 import { MatchType } from "../generated/prisma";
 import prisma from "../src/prisma";
 import groupStates from "./data/match/fifa-world-cup/groupState.json";
-import roundOf32 from "./data/match/fifa-world-cup/round_of_32.json";
-import roundOf16 from "./data/match/fifa-world-cup/round_of_16.json";
-import quarterFinal from "./data/match/fifa-world-cup/quarter_final.json";
-import semiFinal from "./data/match/fifa-world-cup/semi_final.json";
-import final from "./data/match/fifa-world-cup/final.json";
+// import roundOf32 from "./data/match/fifa-world-cup/round_of_32.json";
+// import roundOf16 from "./data/match/fifa-world-cup/round_of_16.json";
+// import quarterFinal from "./data/match/fifa-world-cup/quarter_final.json";
+// import semiFinal from "./data/match/fifa-world-cup/semi_final.json";
+// import final from "./data/match/fifa-world-cup/final.json";
 
 const LEAGUE_SLUG = "fifa-world-cup-2026";
 const SEASON_NAME = "FIFA World Cup 2026 Season";
@@ -37,7 +37,7 @@ async function main() {
     const teamMap = new Map(teams.map((t) => [t.name, t]));
 
     // Create group stage matches
-    for (const match of roundOf32) {
+    for (const match of groupStates) {
       const homeTeam = teamMap.get(match.home);
       const awayTeam = teamMap.get(match.away);
 
@@ -69,10 +69,10 @@ async function main() {
           kickoff: match.date,
           timezone: "UTC",
           // venue: "TBD",
-          venue:match.venue,
+          venue: match.venue,
           slug: `${match.home}-vs-${match.away}-${match.date}`,
           status: "SCHEDULED",
-          type:match.type as MatchType,
+          type: match.type as MatchType,
           group_name: match.group_name,
           allow_draw: true,
           big_match: false,
@@ -97,45 +97,44 @@ async function main() {
 
 main();
 
-
 // Create knockout matches
-    // for (const match of knockoutMatches) {
-    //   const gameweek = await prisma.gameWeek.findFirst({
-    //     where: {
-    //       season_id: season.id,
-    //       number: match.gameweek,
-    //     },
-    //   });
+// for (const match of knockoutMatches) {
+//   const gameweek = await prisma.gameWeek.findFirst({
+//     where: {
+//       season_id: season.id,
+//       number: match.gameweek,
+//     },
+//   });
 
-    //   await prisma.match.upsert({
-    //     where: {
-    //       slug: `knockout-${match.type}-${match.date}`,
-    //     },
-    //     update: {},
-    //     create: {
-    //       kickoff: new Date(match.date),
-    //       timezone: "UTC",
-    //       venue: "TBD",
-    //       slug: `knockout-${match.type}-${match.date}`,
-    //       status: "SCHEDULED",
-    //       type: match.type as any,
-    //       allow_draw: match.allow_draw ?? false,
-    //       big_match: match.type === "FINAL",
-    //       derby: false,
-    //       published: true,
-    //       home_team_name: match.home,
-    //       away_team_name: match.away,
-    //       home_team_id: 1, // Placeholder - will be updated when teams qualify
-    //       away_team_id: 2, // Placeholder
-    //       league_id: league.id,
-    //       season_id: season.id,
-    //       gameweek_id: gameweek?.id || null,
-    //     },
-    //   });
-    // }
+//   await prisma.match.upsert({
+//     where: {
+//       slug: `knockout-${match.type}-${match.date}`,
+//     },
+//     update: {},
+//     create: {
+//       kickoff: new Date(match.date),
+//       timezone: "UTC",
+//       venue: "TBD",
+//       slug: `knockout-${match.type}-${match.date}`,
+//       status: "SCHEDULED",
+//       type: match.type as any,
+//       allow_draw: match.allow_draw ?? false,
+//       big_match: match.type === "FINAL",
+//       derby: false,
+//       published: true,
+//       home_team_name: match.home,
+//       away_team_name: match.away,
+//       home_team_id: 1, // Placeholder - will be updated when teams qualify
+//       away_team_id: 2, // Placeholder
+//       league_id: league.id,
+//       season_id: season.id,
+//       gameweek_id: gameweek?.id || null,
+//     },
+//   });
+// }
 
-    // console.log(
-    //   `✅ ${
-    //     groupStageMatches.length + knockoutMatches.length
-    //   } World Cup matches created successfully`
-    // );
+// console.log(
+//   `✅ ${
+//     groupStageMatches.length + knockoutMatches.length
+//   } World Cup matches created successfully`
+// );
