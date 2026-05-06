@@ -12,7 +12,7 @@ import {
 const router = Router();
 
 router.get("/league-season/:leagueSeasonId", getLeagueSeasonWinnerVotesController);
-router.get("/user/:leagueSeasonId", getUserWinnerVoteController);
+router.get("/user/:leagueSeasonId/key", getUserWinnerVoteController);
 router.post("/vote/key", createWinnerVoteController);
 router.put("/vote/:voteId/key", updateWinnerVoteController);
 
