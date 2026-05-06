@@ -34,7 +34,7 @@ app.use("/api/team-standings", teamStandingsRoutes);
 app.use("/api/contacts", contactRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Express + Neon + Prisma + TypeScript 🚀");
+  res.send("HELLO 🚀");
 });
 
 const PORT = process.env.PORT || 3001;
