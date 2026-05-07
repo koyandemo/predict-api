@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import prisma from "../../prisma";
+import { FIFA_WORLD_CUP_LEAGUE_SEASON_ID } from "../../lib/utils";
 
 export const getLeagueSeasonWinnerVotesController = async (
   req: Request,
@@ -309,53 +310,128 @@ export const createAdminWinnerVoteController = async (req: Request, res: Respons
   }
 };
 
+// export const updateAdminWinnerVoteController = async (req: Request, res: Response) => {
+//   try {
+//     const voteId = parseInt(req.params.voteId as string);
+//     const { vote_count, team_id } = req.body;
+//     console.log(vote_count,team_id,"316")
+//     const authUserId = (req as any).user?.id;
+
+//     if (!authUserId) {
+//       return res.status(401).json({
+//         success: false,
+//         error: "Unauthorized",
+//       });
+//     }
+
+//     const authUser = await prisma.user.findUnique({
+//       where: { id: authUserId },
+//     });
+
+//     if (authUser?.role !== "ADMIN") {
+//       return res.status(403).json({
+//         success: false,
+//         error: "Admin access required",
+//       });
+//     }
+
+//     const updateData: any = {};
+//     if (vote_count !== undefined) updateData.vote_count = parseInt(vote_count);
+//     if (team_id !== undefined) updateData.team_id = team_id;
+
+//     const updatedVote = await prisma.adminWinnerVote.update({
+//       where: { id: voteId },
+//       data: updateData,
+//       include: {
+//         team: true,
+//         user: {
+//           select: {
+//             name: true,
+//             email: true,
+//             role: true,
+//           },
+//         },
+//       },
+//     });
+
+//     return res.json({
+//       success: true,
+//       data: updatedVote,
+//     });
+//   } catch (error: any) {
+//     console.error("Error updating admin winner vote:", error);
+//     return res.status(500).json({
+//       success: false,
+//       error: error.message || "Failed to update admin winner vote",
+//     });
+//   }
+// };
+
 export const updateAdminWinnerVoteController = async (req: Request, res: Response) => {
   try {
     const voteId = parseInt(req.params.voteId as string);
+
+    // ✅ Guard against NaN
+    if (isNaN(voteId)) {
+      return res.status(400).json({
+        success: false,
+        error: "Invalid voteId — must be a number",
+      });
+    }
+
     const { vote_count, team_id } = req.body;
     const authUserId = (req as any).user?.id;
 
     if (!authUserId) {
-      return res.status(401).json({
-        success: false,
-        error: "Unauthorized",
-      });
+      return res.status(401).json({ success: false, error: "Unauthorized" });
     }
 
-    const authUser = await prisma.user.findUnique({
-      where: { id: authUserId },
-    });
+    const authUser = await prisma.user.findUnique({ where: { id: authUserId } });
 
     if (authUser?.role !== "ADMIN") {
-      return res.status(403).json({
-        success: false,
-        error: "Admin access required",
-      });
+      return res.status(403).json({ success: false, error: "Admin access required" });
     }
 
+    // ✅ Check the record exists first → clean 404 instead of a 500
+    // const existing = await prisma.adminWinnerVote.findUnique({ where: { id: voteId } });
+
+    // if (!existing) {
+    //   return res.status(404).json({
+    //     success: false,
+    //     error: `AdminWinnerVote with id ${voteId} not found`,
+    //   });
+    // }
+
     const updateData: any = {};
-    if (vote_count !== undefined) updateData.vote_count = vote_count;
+    if (vote_count !== undefined) updateData.vote_count = parseInt(vote_count);
     if (team_id !== undefined) updateData.team_id = team_id;
 
-    const updatedVote = await prisma.adminWinnerVote.update({
+    // const updatedVote = await prisma.adminWinnerVote.update({
+    //   where: { id: voteId },
+    //   data: updateData,
+    //   include: {
+    //     team: true,
+    //     user: { select: { name: true, email: true, role: true } },
+    //   },
+    // });
+
+    const updatedVote = await prisma.adminWinnerVote.upsert({
       where: { id: voteId },
-      data: updateData,
+      update: updateData,
+      create: {
+        id: voteId,          // keep the same id requested
+        vote_count: parseInt(vote_count) ?? 0,
+        team_id: team_id,
+        user_id: authUserId, 
+        league_season_id:FIFA_WORLD_CUP_LEAGUE_SEASON_ID
+      },
       include: {
         team: true,
-        user: {
-          select: {
-            name: true,
-            email: true,
-            role: true,
-          },
-        },
+        user: { select: { name: true, email: true, role: true } },
       },
     });
 
-    return res.json({
-      success: true,
-      data: updatedVote,
-    });
+    return res.json({ success: true, data: updatedVote });
   } catch (error: any) {
     console.error("Error updating admin winner vote:", error);
     return res.status(500).json({

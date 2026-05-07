@@ -8,3 +8,4 @@ export const ALLOWED_ORIGINS = [
 
 export const MATCH_DURATION_MINUTES = 180 * 60 * 1000;
 export const KICKOFF_SOON_MINUTES = 30;
+export const FIFA_WORLD_CUP_LEAGUE_SEASON_ID = 1;
