@@ -416,14 +416,22 @@ export const updateAdminWinnerVoteController = async (req: Request, res: Respons
     // });
 
     const updatedVote = await prisma.adminWinnerVote.upsert({
-      where: { id: voteId },
-      update: updateData,
+      where: {
+        league_season_id_team_id: {  // use the compound unique field name
+          league_season_id: FIFA_WORLD_CUP_LEAGUE_SEASON_ID,
+          team_id: team_id,
+        },
+      },
+      update: {
+        ...updateData,
+        vote_count: parseInt(vote_count) ?? 0,
+      },
       create: {
-        id: voteId,          // keep the same id requested
+        id: voteId,
         vote_count: parseInt(vote_count) ?? 0,
         team_id: team_id,
-        user_id: authUserId, 
-        league_season_id:FIFA_WORLD_CUP_LEAGUE_SEASON_ID
+        user_id: authUserId,
+        league_season_id: FIFA_WORLD_CUP_LEAGUE_SEASON_ID,
       },
       include: {
         team: true,
