@@ -952,7 +952,7 @@ export async function updateAdminScorePredictionController(
 ) {
   try {
     const matchId = Number(req.params.id);
-    const { home_score, away_score, vote_count } = req.body;
+    const { home_score, away_score, vote_count, score_option_id } = req.body;
     const userId = (req as any).user?.id;
 
     if (!matchId || home_score === undefined || away_score === undefined) {
@@ -965,11 +965,7 @@ export async function updateAdminScorePredictionController(
     // STEP 1: Check ScoreOption
     const scoreOption = await prisma.scoreOption.findUnique({
       where: {
-        match_id_home_score_away_score: {
-          match_id: Number(matchId),
-          home_score: Number(home_score),
-          away_score: Number(away_score),
-        },
+        id: score_option_id,
       },
     });
 
@@ -1007,6 +1003,16 @@ export async function updateAdminScorePredictionController(
         data: {
           vote_count: Number(vote_count) ?? existingAdminScore.vote_count,
           user_id: userId,
+        },
+      });
+
+      await prisma.scoreOption.update({
+        where: {
+          id: score_option_id,
+        },
+        data: {
+          home_score: home_score,
+          away_score: away_score,
         },
       });
     }
